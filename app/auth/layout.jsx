@@ -13,7 +13,7 @@ export default function AuthLayout({ children }) {
         </div>
       </div>
       <div className="grow min-h-screen flex items-center">
-        <div className="max-w-[721px] mx-auto w-full">{children}</div>
+        <div className="max-w-[438px] mx-auto w-full">{children}</div>
       </div>
     </div>
   );
