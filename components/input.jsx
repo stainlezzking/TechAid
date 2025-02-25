@@ -1,10 +1,12 @@
 import { twMerge } from "tailwind-merge";
 
-const input = ({ className, children }) => {
+const Input = ({ className, ...props }) => {
     return(
-        <input>
-        </input>
+        <input
+        className={twMerge(`border-borderStroke border-2 p-3 rounded-md focus:border-borderActive focus:outline-none hover:shadow-xl`, className)}
+        {...props}
+        />
     )
 }
 
-export default input
+export default Input
