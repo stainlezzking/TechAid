@@ -2,26 +2,38 @@ import Link from "next/link";
 
 const Navbar = function () {
   return (
-    <div className="navbar">
+    <div className="flex items-center justify-between p-[10px]">
+      <div>
         <Link href="/home">
-          <div className="nav-item">
-          <img height="50px" width="50px" src="" alt="logo"/>
-          </div>
+              < img height="50px" width="50px" src="logo.png" alt="logo"/>
         </Link>
-        <ul className="navGuys">
-            <Link href="/home">
-              <li className="nav-item"><b>Home</b></li>
-            </Link>
-            <Link href="/support">
-              <li className="nav-item"><b>Support History</b></li>
-            </Link>
-            <Link href="/notification">
-            <img width="30px" src="notification.jpg" alt="notification"/>
-            </Link>
-            <Link href="/profile">
-              <img className="rounded-full"  width="30px" src="prof-pic.jpg" alt="prof-pic"/>
-            </Link>
-        </ul>
+      </div>
+        
+      <div className="flex items-center justify-between gap-12">
+        <div className="font-semibold">
+          <Link href="/home">
+                Home
+          </Link> 
+        </div>
+        
+        <div className="">
+          <Link href="/support">
+                Support History
+          </Link> 
+        </div>
+
+        <div>
+          <Link href="/notification">
+            <img width="15px" src="notification.png" alt="notification"/>
+          </Link> 
+        </div>
+        
+        <div>
+          <Link href="/profile">
+            <img className="rounded-full"  width="40px" src="profile-pic.png" alt="prof-pic"/>
+          </Link>
+        </div>
+      </div>  
     </div>
   );
 }

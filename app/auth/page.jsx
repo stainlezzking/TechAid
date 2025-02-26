@@ -1,7 +1,17 @@
+'use client'
+
 import Button from "@/components/button";
 import Input from "@/components/input";
+import { useRouter } from "next/navigation";
 
 const Register = function () {
+  const router = useRouter();
+  
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      router.push('/confirmation');
+    };
+
   return (
     <div className="flex flex-col justify-center w-full p-5">
       <h1 className="text-2xl font-bold pb-[10px]">Register Individual Account!</h1>
@@ -10,10 +20,13 @@ const Register = function () {
       </p>
 
       <div className="">
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col pb-[20px]">
           <label className="pb-[5px] text-gray200">Your Fullname</label>
-          <Input className="" type="text" placeholder="Enter Your Name" required/>
+          <Input className="" 
+            type="text" 
+            placeholder="Enter Your Name" 
+            required/>
         </div>
 
         <div className="flex flex-col pb-[20px]">
@@ -26,10 +39,15 @@ const Register = function () {
           <Input className="" type="password" placeholder="Password" required/>
         </div>
 
+        <div className="flex flex-col pb-[20px]">
+          <label className="pb-[5px] text-gray200">Re-enter Password</label>
+          <Input className="" type="password" placeholder="Password" required/>
+        </div>
+
         <div className="pb-[20px]">
           <label className="flex flex-col pb-[5px] text-gray200">Department</label>
           <select 
-          className="border-borderStroke border-2 p-3 rounded-md  focus:border-blue-500 focus:outline-none hover:shadow-xl w-[100%]" required>
+          className="border-borderStroke border-2 p-3 rounded-md  focus:border-blue-500 focus:outline-none hover:shadow-md w-[100%]" required>
               <option value="">--Department--</option>
               <option value="Technology">Technology</option>
               <option value="Legal">Legal</option>
