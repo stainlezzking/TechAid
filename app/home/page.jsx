@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Button from "@/components/button";
 import Box from "@/components/box";
+import Link from "next/link";
 
 const Home = function () {
     return (
@@ -9,7 +10,9 @@ const Home = function () {
             <div className="p-[50px] xl:max-w-[1200px] mx-auto">
                 <div className="flex items-center justify-between pb-[20px] ">
                     <p className="font-medium text-xl">Welcome, Ola</p>
-                    <Button className='w-[180px] p-[12px]'>Create a new request</Button>
+                    <Link href = "/home/ticket">
+                        <Button className='w-[180px] p-[12px]'>Create a new request</Button>
+                    </Link>
                 </div>
                 <div className="flex gap-8 pb-[30px]">
                     <Box className="grow shrink-0 aspect-[1] max-h-[200px] p-[20px]">Tickets Raised <p className="font-bold text-2xl py-[3px]">10</p></Box>
