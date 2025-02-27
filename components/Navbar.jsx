@@ -1,11 +1,14 @@
 import Link from "next/link";
+import Logo from "@/public/logo.png";
+import Notification from "@/public/notification.png";
+import Profile from "@/public/profile-pic.png";
 
 const Navbar = function () {
   return (
-    <div className="flex items-center justify-between p-[10px]">
+    <div className="flex items-center justify-between">
       <div>
         <Link href="/home">
-              < img height="50px" width="50px" src="logo.png" alt="logo"/>
+            < img height="50px" width="50px" src={Logo.src} alt="logo"/>
         </Link>
       </div>
         
@@ -24,13 +27,13 @@ const Navbar = function () {
 
         <div>
           <Link href="/notification">
-            <img width="15px" src="notification.png" alt="notification"/>
+            <img width="15px" src={Notification.src} alt="notification"/>
           </Link> 
         </div>
         
         <div>
-          <Link href="/profile">
-            <img className="rounded-full"  width="40px" src="profile-pic.png" alt="prof-pic"/>
+          <Link href="/home/profile">
+            <img className="rounded-full"  width="40px" src={Profile.src} alt="prof-pic"/>
           </Link>
         </div>
       </div>  

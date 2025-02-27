@@ -13,7 +13,7 @@ const Register = function () {
     };
 
   return (
-    <div className="flex flex-col justify-center w-full p-5">
+    <div className="flex flex-col justify-center w-full p-5 mx-auto">
       <h1 className="text-2xl font-bold pb-[10px]">Register Individual Account!</h1>
       <p className="pb-[20px] text-borderStroke">For the purpose of industry regulation, your 
         <br/>details are required.
