@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styling heroUI select element to show caret Icon on one line */
+button[data-slot="trigger"] {
+  display: flex;
+  justify-content: space-between;
+}
