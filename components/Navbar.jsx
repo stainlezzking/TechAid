@@ -19,8 +19,8 @@ const Navbar = function () {
           </Link> 
         </div>
         
-        <div className="">
-          <Link href="/support">
+        <div>
+          <Link href="/home/history">
                 Support History
           </Link> 
         </div>

@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Box from "@/components/box";
 import Input from "@/components/input";
@@ -6,6 +9,12 @@ import Phone from "@/public/phone.png";
 import Email from "@/public/email.png";
 
 const Ticket = function() {
+    const [selectedValue, setSelectedValue] = useState('');
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
     return (
         <div className="mx-[31px]">
             <Navbar/>
@@ -37,7 +46,7 @@ const Ticket = function() {
                                 </Input>
 
                                 <label className="pt-[35px] pb-[15px]">Description:</label>
-                                <textarea className="rounded-md shadow-md px-[5px]" placeholder="Describe your issue in detail"></textarea>
+                                <textarea className="rounded-lg shadow-md px-[5px]" placeholder="Describe your issue in detail"></textarea>
 
                                 <div className="flex pt-[35px] pb-[35px] justify-between">
                                     <div>
@@ -49,24 +58,52 @@ const Ticket = function() {
                                    <div>
                                         <span className="pr-[10px]">Select Priority Level:</span>
                                         <select className="px-[20px] py-[5px] rounded-md shadow-md">
-                                            <option>-----None-----</option>
+                                            <option value="">-----None-----</option>
                                         </select>
                                    </div>
                                 </div>
 
                                 <div className="flex flex-col">
                                     <span className="font-semibold">Preferred Contact method</span>
-                                    <span>How do you want us to connect with you?</span>
+                                    <span className="pb-[10px]">How do you want us to connect with you?</span>
                                     <div className="flex justify-between">
                                         <div className="flex gap-[44px]">
-                                            <button className="flex shadow-md rounded-b-lg px-[20px] py-[5px]">
+                                            <label 
+                                                className={`flex px-[20px] py-[5px] rounded-md cursor-pointer transition-all duration-200 ${
+                                                    selectedValue === 'Phone/Teams' ? 'bg-primaryBlue text-white' : 'bg-white shadow-md rounded-b-lg'
+                                                  }`}
+                                                // className="flex shadow-md rounded-b-lg px-[20px] py-[5px] cursor-pointer 
+                                                // ${selectedValue === 'Phone/Teams call' ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-gray-700 border-gray-300'}"
+                                                htmlFor="phone/teams call">
                                                 <img className="pr-[5px]" src={Phone.src} alt="phone"/>
                                                 Phone/Teams Call
-                                            </button>
-                                            <button className="flex shadow-md rounded-b-lg px-[30px] py-[5px]">
+                                            </label>
+                                            <input 
+                                                className="absolute opacity-0"
+                                                type="radio" 
+                                                id="phone/teams call" 
+                                                name="Contact"
+                                                value="Phone/Teams"
+                                                onChange={handleChange}
+                                                checked={selectedValue === 'Phone/Teams call'}/>
+
+                                            <label 
+                                                className={`flex px-[20px] py-[5px] rounded-md cursor-pointer transition-all duration-200 ${
+                                                    selectedValue === 'Email/Teams' ? 'bg-primaryBlue text-white' : 'bg-white shadow-md rounded-b-lg'
+                                                  }`}
+                                                // className="flex shadow-md rounded-b-lg px-[20px] py-[5px] cursor-pointer" 
+                                                htmlFor="email/teams chat">
                                                 <img className="pr-[5px]" src={Email.src} alt="email"/>
                                                 Email/Teams Chat
-                                            </button>
+                                            </label>
+                                            <input 
+                                                className="absolute opacity-0"
+                                                type="radio" 
+                                                id="email/teams chat" 
+                                                name="Contact"
+                                                value="Email/Teams"
+                                                onChange={handleChange}
+                                                checked={selectedValue === 'Email/Teams chat'}/>
                                         </div>
                                         <div>
                                             <Button className="px-[20px] py-[5px]">Submit</Button>
