@@ -10,7 +10,7 @@ const Confirmation = function() {
 
     return (
         <div className="h-[100vh]">
-            <div className="flex flex-col items-center justify-center h-[100vh] max-h-[96%]">
+            <div className="flex flex-col items-center justify-center h-[100vh] max-h-[95%]">
                 <img src="/confirmation.png" alt="tick"/>
                 <div>
                     <h1 className="text-2xl pt-[40px]">Account created successfully!</h1>
@@ -29,7 +29,7 @@ const Confirmation = function() {
                     </button>
                 </div>
             </div>
-            <div className="min-w-screen h-[300px] max-h-[4%] bg-primaryBlue">
+            <div className="fixed bottom-0 right-0 left-0 min-w-screen h-[50px] max-h-[5%] bg-primaryBlue">
             </div>
         </div>
     );

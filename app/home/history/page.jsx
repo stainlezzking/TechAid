@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/button";
+import Pagination from "@/components/pagination";
 import Filter from "@/public/filter.png";
 import Search from "@/public/search.png";
 
@@ -26,11 +28,16 @@ const History = function() {
       const handleChange = (e) => {
         setValue(e.target.value);
       };
+    
+    const router = useRouter();
+    const handleTicket = () => {
+        router.push('/home/ticket')
+    };
 
     return(
         <div className="mx-[31px]">
             <Navbar/>
-            <div className="mx-auto pt-[37px] xl:max-w-[1200px]">
+            <div className="mx-auto pt-[37px] pb-[64px] xl:max-w-[1200px]">
                 <div className="bg-[#F4F7FC] rounded-t-xl">
                     <div className="flex items-center justify-between py-[15px]">
                         <div className="flex items-center gap-[16px]">
@@ -61,23 +68,14 @@ const History = function() {
                             </select>
                         </div>
                         <div className="pr-[20px]">
-                            <Button className="px-[12px] py-[6px]">+ Add Complaint</Button>
+                            <Button className="px-[12px] py-[6px]" onClick={handleTicket}>+ Add Complaint</Button>
                         </div>
-                    </div>
-                    <div className="flex pl-[10px] pb-[12px]">
-                        <input type="checkbox"/>
-                        <span className="pl-[30px]">Id</span>
-                        <span className="pl-[60px]">Name</span>
-                        <span className="pl-[80px]">Description</span>
-                        <span className="pl-[40px]">Status</span>
-                        <span className="pl-[60px]">Date Opened</span>
-                        <span className="pr-[140px]">Action</span>
                     </div>
                 </div>
 
                 <table className="table-auto w-full">
                     <thead>
-                        <tr className="font-light">
+                        <tr className="font-light bg-[#F4F7FC]">
                         <th className="p-2 text-left"><input type="checkbox"/></th>
                         <th className="p-2 text-left font-semibold">Id</th>
                         <th className="p-2 text-left font-semibold">Name</th>
@@ -91,13 +89,13 @@ const History = function() {
                         {data.map((row, index) => (
                         <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-[#EEEEEE]'}>
                             {/* First column with alternating colors */}
-                            <td className={`p-4`}>
+                            <td className="p-[10px]">
                             <input type="checkbox" className="form-checkbox" />
                             </td>
-                            <td className="p-4">{row.id}</td>
-                            <td className="p-4">{row.name}</td>
-                            <td className="p-4 text-wrap">{row.description}</td>
-                            <td className="p-4 text-wrap-none">
+                            <td className="p-2">{row.id}</td>
+                            <td className="p-2">{row.name}</td>
+                            <td className="p-2 text-wrap">{row.description}</td>
+                            <td className="p-2">
                             <span
                                 className={`px-2 py-1 text-sm rounded-full ${
                                 row.status === 'Open' ? 'bg-[#F4F7FC] text-[#4F5AEd]'
@@ -123,9 +121,26 @@ const History = function() {
                         </tr>
                         ))}
                     </tbody>
-                    </table>
+                </table>
+                <div className="flex justify-between font-medium px-[20px] py-[13px] bg-[#F4F7FC]">
+                    <div>
+                        1-10 0f 97
+                    </div>
+                    <div className="flex gap-[20px]">
+                        <div>
+                            <span>Rows per Page: </span>
+                            <select>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </div>
+                        <div>
+                            <Pagination/>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
         </div>
     )
 }
