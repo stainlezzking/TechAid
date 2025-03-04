@@ -11,16 +11,12 @@ import Search from "@/public/search.png";
 
 const History = function() {
     const data = [
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Not Opened' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Overdue' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ann Culhane', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Not Opened' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Overdue' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
         
     ];
     const [value, setValue] = useState('');
@@ -110,7 +106,7 @@ const History = function() {
                             <td className="p-4">{row.dateOpened}</td>
                             <td className="p-4">
                                 <Link
-                                    href="/home/history"
+                                    href="/view"
                                     className="underline"
                                 >
                                     {row.action}
@@ -124,7 +120,7 @@ const History = function() {
                 </table>
                 <div className="flex justify-between font-medium px-[20px] py-[13px] bg-[#F4F7FC]">
                     <div>
-                        1-10 0f 97
+                        1-6
                     </div>
                     <div className="flex gap-[20px]">
                         <div>

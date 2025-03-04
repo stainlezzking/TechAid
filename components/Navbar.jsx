@@ -7,20 +7,26 @@ const Navbar = function () {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <Link href="/home">
+        <Link href="/">
             < img height="50px" width="50px" src={Logo.src} alt="logo"/>
         </Link>
       </div>
         
       <div className="flex items-center justify-between gap-12">
         <div className="font-semibold">
-          <Link href="/home">
+          <Link href="/">
                 Home
           </Link> 
         </div>
+
+        <div className="font-semibold">
+          <Link href="/">
+                News & Insights
+          </Link> 
+        </div>
         
-        <div>
-          <Link href="/home/history">
+        <div className="font-semibold">
+          <Link href="/history">
                 Support History
           </Link> 
         </div>
@@ -32,7 +38,7 @@ const Navbar = function () {
         </div>
         
         <div>
-          <Link href="/home/profile">
+          <Link href="/profile">
             <img className="rounded-full"  width="40px" src={Profile.src} alt="prof-pic"/>
           </Link>
         </div>

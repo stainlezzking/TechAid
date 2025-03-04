@@ -3,6 +3,7 @@
 import Button from "@/components/button";
 import Input from "@/components/input";
 import Link from "next/link";
+import Arrow from "@/public/arrow.png";
 import { useRouter } from "next/navigation";
 
 const Password = function () {
@@ -10,7 +11,7 @@ const Password = function () {
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    router.push('../../home');
+    router.push('../../');
   };
 
   return (
@@ -35,11 +36,11 @@ const Password = function () {
       </div>
  
       <div className="flex">
-            <Link href="../auth/login">
-            <img src="/arrow.png" className="w-[70px] h-[70px]" alt="arrow"/>
-            </Link>
+        <Link href="../auth/login">
+        <img src={Arrow.src} className="w-[70px] h-[70px]" alt="arrow"/>
+        </Link>
 
-            <Button className="ml-5 w-[460px]" onClick={handlePasswordSubmit}>Confirm</Button>
+        <Button className="ml-5 w-[460px]" onSubmit={handlePasswordSubmit}>Confirm</Button>
       </div>
       </form>
       

@@ -11,7 +11,7 @@ const Register = function () {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    router.push("/confirmation");
+    router.push("../auth/verification");
   };
 
   return (

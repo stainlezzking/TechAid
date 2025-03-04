@@ -59,6 +59,9 @@ const Ticket = function() {
                                         <span className="pr-[10px]">Select Priority Level:</span>
                                         <select className="px-[20px] py-[5px] rounded-md shadow-md">
                                             <option value="">-----None-----</option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
                                         </select>
                                    </div>
                                 </div>
