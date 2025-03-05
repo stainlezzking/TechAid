@@ -1,8 +1,17 @@
+"use client"
+
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Box from "@/components/box";
 import Button from "@/components/button";
 
 const View = function() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const addMessage = () => {
+        setIsOpen(!isOpen);
+    };
+
     return(
         <div className="mx-[31px]">
             <Navbar/>
@@ -77,8 +86,28 @@ const View = function() {
                 </Box>
                 </div>
                 <div className="py-[18px]">
-                    <Button className="p-[12px] w-[20%] ml-auto">Add Message</Button>
+                    <Button 
+                        className="p-[12px] w-[20%] ml-auto" 
+                        onClick={addMessage}
+                    >
+                        Add Message
+                    </Button>
                 </div>
+
+                {isOpen && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                        <div className="bg-white py-[25px] px-[41px] rounded-lg shadow-lg max-w-sm w-full">
+                            <h2 className="text-xl font-semibold mb-4">Leave A Message</h2>
+                            <textarea className="border border-borderStroke p-2 rounded-lg min-w-full h-40"></textarea>
+                            <Button
+                                onClick={addMessage}
+                                className="mt-4 ml-auto px-4 py-2 w-[40%]"
+                            >
+                                Send
+                            </Button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

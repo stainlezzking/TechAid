@@ -3,16 +3,38 @@
 import Button from "@/components/button";
 import SelectForm from "@/components/form/selectForm";
 import Input from "@/components/input";
+import { useState, useEffect } from "react";
 import { userDepartments } from "@/utils/data";
 import { useRouter } from "next/navigation";
+import { useForm, Controller } from "react-hook-form";
 
 const Register = function () {
   const router = useRouter();
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    router.push("../auth/verification");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({ });
+
+
+  // Handle form submission
+  const handleFormSubmit = (data) => {
+    // Set form submitted state to true
+    setIsSubmitted(true);
+    console.log(data);
   };
+
+  // Use `useEffect` to trigger the router navigation after submission
+  useEffect(() => {
+    if (isSubmitted) {
+      router.push("../auth/auth-app"); // Perform navigation after submission
+    }
+  }, [isSubmitted, router]); // Run this effect when form submission is completed
+
 
   return (
     <div className="flex flex-col justify-center w-full mx-auto">
@@ -20,34 +42,87 @@ const Register = function () {
       <p className="pb-[40px] w-[411px] text-[18px] text-borderStroke">For the purpose of industry regulation, your details are required.</p>
 
       <div className="">
-        <form onSubmit={handleFormSubmit} className="max-w-[426px] space-y-[24px]">
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="max-w-[426px] space-y-[24px]">
+          {/* Full Name Field */}
           <div className="flex flex-col">
             <label className="pb-[5px] text-gray200">Your Fullname</label>
-            <Input type="text" placeholder="Enter Your Name" required />
+            <Input 
+              type="text" 
+              placeholder="Enter Your Name" 
+              {...register("fullname", { required: "Full name is required" })}
+              />
+              {errors.fullname && <span className="text-red-500 text-sm">{errors.fullname.message}</span>}
           </div>
 
+          {/* Email field */}
           <div className="flex flex-col">
             <label className="pb-[5px] text-gray200">Email Address</label>
-            <Input type="email" placeholder="Email Address" required />
+            <Input 
+              type="email" 
+              placeholder="Email Address" 
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Za-z0-9._%+-]+@gmail\.com$/,
+                  message: "Email must end with @gmail.com",
+                },
+              })}
+              />
+               {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
           </div>
 
+          {/* Password Field */}
           <div className="flex flex-col">
             <label className="pb-[5px] text-gray200">Create Password</label>
-            <Input type="password" placeholder="Password" required />
+            <Input 
+              type="password" 
+              placeholder="Password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
+            />
+            {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
           </div>
 
+          {/* Department Field */}
           <div>
             <label className="flex flex-col pb-[5px] text-gray200">Department</label>
-            <SelectForm options={userDepartments} />
+            <Controller
+               control={control}
+               name="department"
+               render={({ field }) => (
+                <SelectForm 
+                  {...field}
+              options={userDepartments}
+            />
+               )}
+               rules={{ required: "Department is required" }} 
+            />
+            
+            {errors.department && <span className="text-red-500 text-sm">{errors.department.message}</span>}
           </div>
 
-          <div className="flex gap-x-[14px]">
-            <input required type="checkbox" className="h-5 w-5 cursor-pointer hover:shadow-md border border-slate-300" id="Terms and Conditions" />
-            <label htmlFor="Terms and Conditions" className="text-gray200">
-              I agree to terms & conditions
-            </label>
+          {/* Terms and Conditions */}
+          <div className="flex flex-col">
+            <div className="flex gap-x-[14px]">
+              <input 
+                type="checkbox" 
+                id="Terms and Conditions"
+                className="h-5 w-5 cursor-pointer hover:shadow-md border border-slate-300" 
+                {...register("terms", { required: "You must agree to the terms and conditions" })}
+                />
+                <label htmlFor="Terms and Conditions" className="text-gray200">
+                  I agree to terms & conditions
+                </label>
+            </div>
+            {errors.terms && <span className="text-red-500 text-sm">{errors.terms.message}</span>}
           </div>
-          <Button className="">Register Account</Button>
+
+          <Button className="" type="submit" disabled={!isValid}>Register Account</Button>
         </form>
       </div>
     </div>
