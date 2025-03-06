@@ -43,7 +43,7 @@ const Verification = function () {
 
   return (
     <div className="flex flex-col w-full p-5">
-      <div className="font-bold">Scan to Enable Two-Step Verification</div>
+      <div className="font-bold">A verification code has been sent to your account</div>
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="pt-[31px] pb-[19px]">
           <div className="flex space-x-2">

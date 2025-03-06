@@ -8,14 +8,7 @@ function CaretDownIcon() {
     </svg>
   );
 }
-export default function SelectForm({ 
-  options, 
-  value, 
-  onChange, 
-  name, 
-  label, 
-  ...rest 
-}) {
+export default function SelectForm({ options, value, onChange, name, label, ...rest }) {
   const handleSelectChange = (selectedValue) => {
     onChange(selectedValue); // This calls onChange from react-hook-form
   };
@@ -23,20 +16,16 @@ export default function SelectForm({
   return (
     <div className="flex flex-col">
       <Select
-      {...rest}
-      value={value} 
-      onChange={handleSelectChange} 
-      className="bg-white border-borderStroke border-2 p-3 rounded-md  focus:border-blue-500 focus:outline-none hover:shadow-md w-[100%]"
-      placeholder="Select Department"
-      selectorIcon={<CaretDownIcon />}
+        {...rest}
+        value={value}
+        onChange={handleSelectChange}
+        className="bg-white border-borderStroke border-2 p-3 rounded-md  focus:border-blue-500 focus:outline-none hover:shadow-md w-[100%]"
+        placeholder="Select Department"
+        selectorIcon={<CaretDownIcon />}
       >
         <SelectSection className="bg-white space-y-1 py-2 rounded-md shadow-md w-full">
           {options.map((dpt) => (
-            <SelectItem 
-              key={dpt.key} 
-              value={dpt.key}
-              className="p-2 hover:bg-gray200/10"
-              >
+            <SelectItem key={dpt.key} value={dpt.key} className="p-2 hover:bg-gray200/10">
               {dpt.label}
             </SelectItem>
           ))}
