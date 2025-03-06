@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Box from "@/components/box";
 import Input from "@/components/input";
@@ -9,17 +10,21 @@ import Phone from "@/public/phone.png";
 import Email from "@/public/email.png";
 
 const Ticket = function() {
-    const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
+       const handleChange = (e) => {
+        setSelectedValue(e.target.value);
+       };
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
+  const router = useRouter();
+      const handleTicket = () => {
+          router.push('/')
+      };
 
     return (
         <div className="mx-[31px]">
             <Navbar/>
             <div className="mx-auto pt-[26px] xl:max-w-[1200px]">
-                <form>
+                <form onSubmit={handleTicket}>
                     <div className="pb-[22px]">
                         <Box className="pl-[60px] pr-[94px] py-[24px] w-full">
                             <div className="font-medium">
@@ -27,10 +32,12 @@ const Ticket = function() {
                             </div>
                             <div className="flex flex-col">
                                 <label className="font-extralight pb-[10px]">Tell us about your problem so we can get you the right help and support</label>
-                                <Input 
+                                
+                                <Input
                                     className="py-[16px] border-none"
                                     type="text" 
-                                    placeholder="Example: I have isssues logging into my computer">
+                                    placeholder="Example: I have issues logging into my computer"
+                                    >
                                 </Input>
                             </div>
                         </Box>
@@ -59,9 +66,10 @@ const Ticket = function() {
                                         <span className="pr-[10px]">Select Priority Level:</span>
                                         <select className="px-[20px] py-[5px] rounded-md shadow-md">
                                             <option value="">-----None-----</option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                            <option value="Critical">Critical</option>
                                         </select>
                                    </div>
                                 </div>
@@ -75,8 +83,6 @@ const Ticket = function() {
                                                 className={`flex px-[20px] py-[5px] rounded-md cursor-pointer transition-all duration-200 ${
                                                     selectedValue === 'Phone/Teams' ? 'bg-primaryBlue text-white' : 'bg-white shadow-md rounded-b-lg'
                                                   }`}
-                                                // className="flex shadow-md rounded-b-lg px-[20px] py-[5px] cursor-pointer 
-                                                // ${selectedValue === 'Phone/Teams call' ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-gray-700 border-gray-300'}"
                                                 htmlFor="phone/teams call">
                                                 <img className="pr-[5px]" src={Phone.src} alt="phone"/>
                                                 Phone/Teams Call
@@ -94,7 +100,6 @@ const Ticket = function() {
                                                 className={`flex px-[20px] py-[5px] rounded-md cursor-pointer transition-all duration-200 ${
                                                     selectedValue === 'Email/Teams' ? 'bg-primaryBlue text-white' : 'bg-white shadow-md rounded-b-lg'
                                                   }`}
-                                                // className="flex shadow-md rounded-b-lg px-[20px] py-[5px] cursor-pointer" 
                                                 htmlFor="email/teams chat">
                                                 <img className="pr-[5px]" src={Email.src} alt="email"/>
                                                 Email/Teams Chat

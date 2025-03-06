@@ -27,7 +27,7 @@ const History = function() {
     
     const router = useRouter();
     const handleTicket = () => {
-        router.push('/home/ticket')
+        router.push('/ticket')
     };
 
     return(

@@ -27,7 +27,7 @@ const Password = function () {
 
   useEffect(() => {
     if (isSubmitted) {
-      router.push("../../"); 
+      router.push("../auth/2FA-auth-login"); 
     }
   }, [isSubmitted, router]);
 

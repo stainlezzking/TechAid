@@ -20,7 +20,7 @@ const Navbar = function () {
         </div>
 
         <div className="font-semibold">
-          <Link href="/">
+          <Link href="/news">
                 News & Insights
           </Link> 
         </div>

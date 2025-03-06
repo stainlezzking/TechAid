@@ -21,7 +21,6 @@ const Login = function () {
   const handleEmailSubmit = (data) => {
     setIsSubmitted(true);
     console.log(data);
-    router.push('../auth/password');
   };
 
   useEffect(() => {

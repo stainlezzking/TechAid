@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const Verification = function () {
+const LoginVerification = function () {
       const router = useRouter();
       const [otp, setOtp] = useState(["", "", "", "", "", ""]);
       const [errorMessage, setErrorMessage] = useState("");
@@ -35,7 +35,7 @@ const Verification = function () {
       const handleCodeSubmit = () => {
         console.log(otp)
         if (isFormValid) {
-          router.push("../../confirmation");
+          router.push("../../");
         } else {
           setErrorMessage(
             isAnyFieldEmpty
@@ -51,7 +51,7 @@ const Verification = function () {
     return(
         <div className="flex flex-col w-full p-5">
             <div className="font-bold">
-                A verification code has been sent to your account
+                Enter verification code
             </div>
             <form onSubmit={(e) => e.preventDefault()}>
                 <div className="pt-[31px] pb-[19px]">
@@ -78,7 +78,7 @@ const Verification = function () {
                 </div>
                 )}
                 <div className="flex">
-                    <Link href="/auth">
+                    <Link href="../auth/password">
                     <img src={Arrow.src} className="w-[70px] h-[70px]" alt="arrow"/>
                     </Link>
                     <Button className="ml-5 w-[50%]" disabled={!isFormValid} type="button" onClick={handleCodeSubmit}>Confirm</Button>
@@ -94,4 +94,4 @@ const Verification = function () {
     );
 }
 
-export default Verification;
+export default LoginVerification;
