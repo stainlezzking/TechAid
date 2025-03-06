@@ -3,16 +3,15 @@
 import Button from "@/components/button";
 import SelectForm from "@/components/form/selectForm";
 import Input from "@/components/input";
-import { useState, useEffect } from "react";
 import { userDepartments } from "@/utils/data";
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { useAuth } from "@/context/authenticationApi";
+import { toast } from "sonner";
 
 const Register = function () {
   const router = useRouter();
-  const { signupState } = useAuth();
-
+  const { signupState, UserDataState, isNewUserState } = useAuth();
   const {
     control,
     register,
@@ -24,17 +23,32 @@ const Register = function () {
   const handleFormSubmit = async (data) => {
     signupState[1](data);
 
-    // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/credentials`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(data),
-    // }).then((d) => d.json());
-    // if (response.success) {
-    //   // save data to context api,
-    //   // push to qrcode page
-    // }
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/credentials`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((d) => d.json());
 
-    router.push("../auth/auth-app");
+    const errRes = response.error;
+    if (!response.success) {
+      if (typeof errRes != "object") return toast(response.message, { position: "top-right" });
+      response.error.forEach((err) => {
+        toast(err, {
+          position: "top-right",
+        });
+      });
+      return;
+    }
+    if (!response.data) {
+      // if the server does not send any data down.
+      toast("Please reload the page and try again..");
+      setTimeout(() => {
+        window.location.href = window.location.href;
+      }, 3000);
+    }
+    UserDataState[1](response.data);
+    isNewUserState[1](true);
+    router.push("/auth/auth-app");
   };
 
   return (

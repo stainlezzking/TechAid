@@ -1,24 +1,34 @@
 "use client";
-
-import Button from "@/components/button";
-import QRcode from "@/public/QRCode.png";
+import { useAuth } from "@/context/authenticationApi";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Authentication = function () {
   const router = useRouter();
+  const { UserDataState } = useAuth();
 
-  const handleNextClick = () => {
-    router.push("../auth/2FA-auth");
-  };
+  useEffect(() => {
+    if (!UserDataState[0]) {
+      router.push("/auth");
+    }
+  }, [UserDataState, router]); // Run when `UserDataState` changes
+
+  if (!UserDataState[0]) {
+    return null; // Prevent rendering while redirecting
+  }
 
   return (
     <div className="flex flex-col items-center justify-center w-full mx-auto">
       <h1 className="text-2xl font-bold pb-[49px]">Scan to Enable Two-Step Verification</h1>
-      <img src={QRcode.src} alt="QRcode" />
+      <img src={userDataState[0].qrcodeURL} alt="QRcode" />
       <span className="pt-[32px] pb-[44px]">Scan QR code using an Authenticator App</span>
-      <Button className="w-[40%] p-[10px]" onClick={handleNextClick}>
+      <Link
+        href="/auth/2FA-auth"
+        className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block w-[214px] text-center py-[12px]"
+      >
         Next
-      </Button>
+      </Link>
     </div>
   );
 };

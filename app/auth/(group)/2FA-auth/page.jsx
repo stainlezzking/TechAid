@@ -1,44 +1,47 @@
 "use client";
 
 import Button from "@/components/button";
+import { FetchPost } from "@/lib/utils";
 import Arrow from "@/public/arrow.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { InputOtp } from "@heroui/input-otp";
+import { useAuth } from "@/context/authenticationApi";
 
 const Verification = function () {
   const router = useRouter();
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const handleChange = (e, index) => {
-    const value = e.target.value;
-    if (value.length <= 1) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
-    }
+  const [submitting, setIsSubmitting] = useState(false);
+  const [otp, setOtp] = useState("");
+  const { isNewUserState, UserDataState } = useAuth();
 
-    if (value.length === 1 && index < otp.length - 1) {
-      document.getElementById(`otp-input-${index + 1}`).focus();
+  useEffect(() => {
+    if (!UserDataState[0]) {
+      router.push("/auth");
     }
-  };
+  }, [UserDataState, router]);
 
-  const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && otp[index] === "" && index > 0) {
-      document.getElementById(`otp-input-${index - 1}`).focus();
-    }
-  };
-  const isOtpValid = otp.every((digit) => /^[0-9]$/.test(digit));
-  const isAnyFieldEmpty = otp.some((digit) => digit === "");
-  const isFormValid = isOtpValid && !isAnyFieldEmpty;
+  if (!UserDataState[0]) {
+    return null;
+  }
 
-  const handleCodeSubmit = () => {
-    console.log(otp);
-    if (isFormValid) {
-      router.push("../../confirmation");
-    } else {
-      setErrorMessage(isAnyFieldEmpty ? "Please fill out all OTP fields." : "Only numeric values are allowed in OTP fields.");
+  const handleCodeSubmit = async () => {
+    setIsSubmitting(true);
+    const path = isNewUserState[0] ? "/auth/register" : "/auth/login";
+
+    const response = await FetchPost(path, { data: UserDataState[0], code: otp });
+    setIsSubmitting(false);
+    if (!response.success) return toast.warning(response.message);
+    if (!response.success && response.redirect) {
+      UserDataState[1](null);
+      setTimeout(() => {
+        const path = isNewUserState[0] ? "/auth" : "/auth/login";
+        router.push(path);
+      }, 1000);
+      return;
     }
+    // i want to authenticate this user
   };
 
   return (
@@ -46,29 +49,23 @@ const Verification = function () {
       <div className="font-bold">A verification code has been sent to your account</div>
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="pt-[31px] pb-[19px]">
-          <div className="flex space-x-2">
-            {otp.map((digit, index) => (
-              <div key={index}>
-                <input
-                  id={`otp-input-${index}`}
-                  type="text"
-                  maxLength="1"
-                  value={digit}
-                  onChange={(e) => handleChange(e, index)}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
-                  className="w-12 h-12 text-center text-xl bg-gray100 rounded-md shadow-md"
-                />
-              </div>
-            ))}
-          </div>
+          <InputOtp
+            length={6}
+            value={otp}
+            onValueChange={setOtp}
+            errorMessage="Invalid OTP"
+            classNames={{
+              segmentWrapper: "flex space-x-2",
+              segment: "w-12 h-12 text-center text-xl bg-gray100 rounded-md shadow-md",
+            }}
+          />
         </div>
-        {errorMessage && <div className="text-red-500 text-sm mt-2">{errorMessage}</div>}
         <div className="flex">
           <Link href="/auth">
             <img src={Arrow.src} className="w-[70px] h-[70px]" alt="arrow" />
           </Link>
-          <Button className="ml-5 w-[50%]" disabled={!isFormValid} type="button" onClick={handleCodeSubmit}>
-            Confirm
+          <Button className="ml-5 w-[50%]" type="button" onClick={handleCodeSubmit}>
+            {!submitting ? "Confirm" : "Submitting..."}
           </Button>
         </div>
       </form>
