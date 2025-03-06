@@ -10,8 +10,9 @@ const Home = function () {
             <div className="p-[50px] xl:max-w-[1200px] mx-auto">
                 <div className="flex items-center justify-between pb-[20px] ">
                     <p className="font-medium text-xl">Welcome, Ola</p>
-                    <Link href = "/home/ticket">
-                        <Button className='w-[180px] p-[12px]'>Create a new request</Button>
+                    <Link href = "/ticket">
+                        <Button className='w-[180px] py-[12px] 
+                        '>Create a new request</Button>
                     </Link>
                 </div>
                 <div className="flex gap-8 pb-[30px]">
@@ -51,6 +52,7 @@ const Home = function () {
                 
                 <div className="flex justify-between pb-[30px] gap-8">
                     <Box className="grow shrink-0 aspect-[1] max-h-[160px] px-[9px] py-[19px] text-sm">
+                    <Link href="/view">
                         <div className="flex items-center justify-between pb-[2px]">
                             <div>
                             #7364 <span className="ml-1"> My app is very buggy</span>
@@ -67,8 +69,10 @@ const Home = function () {
                             <span>Jan 22, 2025</span>
                             <span>Critical</span>
                         </div>
+                    </Link>
                     </Box>
                     <Box className=" grow shrink-0 aspect-[1] max-h-[160px] px-[9px] py-[19px] text-sm">
+                    <Link href="/view">
                         <div className="flex items-center justify-between pb-[10px]">
                             <div>
                             #7364 <span className="ml-1"> My app is very buggy</span>
@@ -85,11 +89,13 @@ const Home = function () {
                             <span>Jan 22, 2025</span>
                             <span>Critical</span>
                         </div>
+                    </Link>
                     </Box>
                 </div>
 
                 <div className="flex flex-row justify-between gap-8 pb-[30px]">
                     <Box className="grow shrink-0 aspect-[1] max-h-[160px] px-[9px] py-[19px] text-sm">
+                    <Link href="/view">
                         <div className="flex items-center justify-between pb-[10px]">
                             <div>
                             #7364 <span className="ml-1"> My app is very buggy</span>
@@ -106,8 +112,10 @@ const Home = function () {
                             <span>Jan 22, 2025</span>
                             <span>Critical</span>
                         </div>
+                    </Link>
                     </Box>
                     <Box className="grow shrink-0 aspect-[1] max-h-[160px] px-[9px] py-[19px] text-sm">
+                    <Link href="/view">
                         <div className="flex items-center justify-between pb-[10px]">
                             <div>
                             #7364 <span className="ml-1"> My app is very buggy</span>
@@ -124,6 +132,7 @@ const Home = function () {
                             <span>Jan 22, 2025</span>
                             <span>Critical</span>
                         </div>
+                    </Link>
                     </Box>
                 </div>
             

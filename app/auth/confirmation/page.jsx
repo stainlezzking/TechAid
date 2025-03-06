@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 const Confirmation = function() {
     const router = useRouter();
     const handleHome = () => {
-        router.push('/auth/login')
+        router.push('/')
     };
 
     return (
