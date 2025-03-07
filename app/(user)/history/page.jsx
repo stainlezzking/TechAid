@@ -14,27 +14,29 @@ const History = function() {
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage]= useState(7);
 
-    const headers =[{label:"Id", key:"id"}, {label: "Name", key: "name"}, {label: "Description", key: "description"}, {label: "Status", key: "status"}, {label: "Date Opened", key: "dateOpened"}, {label: "Action", key: "action", isLink: true, linkUrl: (row) => `/view`}]
+    const headers =[{label:"Id", key:"id"}, {label: "Name", key: "name"}, {label: "Description", key: "description"}, {label: "Status", key: "status"}, {label: "Date Opened", key: "dateOpened"}, 
+        {label: "Action", key: "action", isLink: true, linkUrl: (row) => row.status === 'Closed' ? '/closed-view' : '/view', className: `underline`}
+    ];
 
     const data = [
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Not Opened' },
+        {id:250211, name: 'Ezemandu Chukwudike', description: "Can't Receive or Send email", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
+        {id:250201, name: 'Stanley Jacob', description: "Desktop not turning on", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
         {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Overdue' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Not Opened' },
         {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Overdue' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Not Opened' },
         {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Overdue' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
-        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Open' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
+        {id:42323, name: 'Ezemandu Chukwudike', description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", dateOpened: '2025-02-15', action: 'View More', status: 'Closed' },
         
     ];
     

@@ -29,9 +29,10 @@ const Table = function({ headers, data, rowsPerPage, currentPage }) {
                         const rowKey = header.key || header;
                         
                         if (header.isLink) {
+                            const className = header.className;
                             return (
                               <td key={colIndex} className="p-4">
-                                <Link href={header.linkUrl(row)} className="underline">
+                                <Link href={header.linkUrl(row)} className={className}>
                                   {row[header.key]}
                                 </Link>
                               </td>
@@ -45,7 +46,7 @@ const Table = function({ headers, data, rowsPerPage, currentPage }) {
                                 className={`px-2 py-1 text-sm rounded-full ${
                                     row[rowKey] === 'Open' ? 'bg-[#F4F7FC] text-[#4F5AEd]'
                                     : row[rowKey] === 'Troubleshooting' ? 'bg-[#F0F1FA] text-[#4F5AED]'
-                                    : row[rowKey] === 'Closed' ? 'bg-[#E1FCEF] text-[#14804A]'
+                                    : row[rowKey] === 'Closed' ? 'bg-[#E9EDF5] border border-black text-[#8F8F8F]'
                                     : row[rowKey] === 'Overdue' ? 'bg-[#FAF0F3] text-[#D12953]'
                                     : row[rowKey] === 'Pending Staff' ? 'bg-[#FAF0F3] text-[#D12953]'
                                     : row[rowKey] === 'Newly Assigned' ? 'bg-[#FFF3CD] text-[#FFC107]'

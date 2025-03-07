@@ -1,29 +1,28 @@
 "use client"
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Box from "@/components/box";
 import Button from "@/components/button";
 
-const View = function() {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const addMessage = () => {
-        setIsOpen(!isOpen);
-    };
+const ClosedView = function() {
+    const router = useRouter();
+        const handleFeedback = () => {
+            router.push('/feedback')
+        };
 
     return(
         <div className="mx-[31px]">
             <Navbar/>
             <div className="mx-auto pt-[74px] pb-[43px] xl:max-w-[1200px]">
                 <div className="border-b border-black w-full ">
-                    Can't Receive or Send Email
+                    Desktop not turning on
                 </div>
                 <div className="flex justify-between py-[15px]">
                     <div className="flex flex-col gap-[24px]">
                         <div className="flex flex-col">
                             <span className="font-extralight">Ticket Number</span>
-                            <span className="font-semibold">250211000023</span>
+                            <span className="font-semibold">25020100004</span>
                         </div>
                         <div className="flex flex-col">
                             <span className="font-extralight">Assigned to</span>
@@ -37,26 +36,23 @@ const View = function() {
                         </div>
                         <div className="flex flex-col">
                             <span className="font-extralight">Submitted</span>
-                            <span className="font-semibold">Feb 11, 2025 08:00</span>
+                            <span className="font-semibold">Feb 01, 2025 09:38</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-[24px]">
                         <div className="flex flex-col">
                             <span className="font-extralight">Status</span>
-                            <span>Troubleshooting</span>
+                            <span>Closed</span>
                         </div>
                         <div className="flex flex-col">
                             <span className="font-extralight">Criticality</span>
-                            <span>High</span>
+                            <span>Medium</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-[24px]">
                         <div className="flex flex-col">
                             <span className="font-extralight">Description</span>
-                            <span>I have not been able to send and <br/> receive emails since yesterday</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span>Can you help me check what is <br/> happening?</span>
+                            <span>My Desktop does not seem to work</span>
                         </div>
                     </div>
                 </div>
@@ -65,52 +61,36 @@ const View = function() {
                 </div>
                 <div className="pt-[20px]">
                 <Box className="flex flex-col p-[24px]">
-                    <span className="font-bold pb-[8px]">Email from David.Eberechukwu@optimusbank.com</span>
-                    <span>Hello Ezemandu,</span>
-                    <span>I trust you are doing great.</span>
-                    <span>I just helped you renew your subscription. Can you confirm if you can see this mail?</span>
+                    <span className="font-bold pb-[8px]">Note from: David Eberechukwu</span>
+                    <span className="pb-[20px]">Thank you for your time.</span>
+                    <span>Do have a great day</span>
                 </Box>
                 </div>
                 <div className="pt-[16px]">
                 <Box className="flex flex-col p-[24px]">
                     <span className="font-bold pb-[8px]">Note From: You</span>
                     <span className="pb-[20px]">Thanks David for picking up this ticket.</span>
-                    <span>Can you help me check what is wrong with my mail? I have been unable to send or receive mails since yesterday.</span>
+                    <span>Oh yes, thank you. It wasn't properly plugged in the monitor itself. Thank you, you can close the ticket.</span>
                 </Box>
                 </div>
                 <div className="pt-[18px]">
                 <Box className="flex flex-col p-[24px]">
                     <span className="font-bold pb-[8px]">Note From: David Eberechukwu</span>
                     <span className="pb-[20px]">Hello Ezemandu,</span>
-                    <span>This is David and I will be working with you on this ticket. Please give me a few minutes to check on your account.</span>
+                    <span>This is David and I will be working with you on this ticket. Can you confirm that the power cable is properly plugged to the computer and to the socket outlet.</span>
                 </Box>
                 </div>
                 <div className="py-[18px]">
                     <Button 
-                        className="p-[12px] w-[20%] ml-auto" 
-                        onClick={addMessage}
+                        className="px-[12px] py-[6px] w-[150px] ml-auto" 
+                        onClick={handleFeedback}
                     >
-                        Add Message
+                        Give Feedback
                     </Button>
                 </div>
-
-                {isOpen && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                        <div className="bg-white py-[25px] px-[41px] rounded-lg shadow-lg max-w-sm w-full">
-                            <h2 className="text-xl font-semibold mb-4">Leave A Message</h2>
-                            <textarea className="border border-borderStroke p-2 rounded-lg min-w-full h-40"></textarea>
-                            <Button
-                                onClick={addMessage}
-                                className="mt-4 ml-auto px-4 py-2 w-[40%]"
-                            >
-                                Send
-                            </Button>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );
 }
 
-export default View
+export default ClosedView;

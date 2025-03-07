@@ -77,7 +77,7 @@ const Ticket = function() {
                                 <div className="flex flex-col">
                                     <span className="font-semibold">Preferred Contact method</span>
                                     <span className="pb-[10px]">How do you want us to connect with you?</span>
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between items-center">
                                         <div className="flex gap-[44px]">
                                             <label 
                                                 className={`flex px-[20px] py-[5px] rounded-md cursor-pointer transition-all duration-200 ${
