@@ -12,7 +12,7 @@ const tickets = [
     description: "Cant Receive or Send email",
     status: "Newly Assigned",
     date: "2025-02-11",
-    severity: "A",
+    engineer: "David Eberechukwu",
   },
   {
     id: 25012,
@@ -20,7 +20,7 @@ const tickets = [
     description: "My phone is not turning on",
     status: "Out of Support",
     date: "2025-01-23",
-    severity: "C",
+    engineer: "Olawale Isijola",
   },
   {
     id: 25011,
@@ -28,7 +28,7 @@ const tickets = [
     description: "I have network issues",
     status: "Ready for closure",
     date: "2025-01-13",
-    severity: "C",
+    engineer: "Oladepo Adebola",
   },
   {
     id: 25031,
@@ -36,7 +36,7 @@ const tickets = [
     description: "I need a new Display Cable",
     status: "Pending Staff",
     date: "2025-03-15",
-    severity: "C",
+    engineer: "Gabriel Olayiwole",
   },
   {
     id: 25030,
@@ -44,7 +44,7 @@ const tickets = [
     description: "Help reset password",
     status: "Troubleshooting",
     date: "2025-03-01",
-    severity: "C",
+    engineer: "Oladepo Adebola",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function AdminDashboard() {
   const displayedTickets = isSurvey ? surveyTickets : tickets;
   const displayedColumns = isSurvey
     ? ["id", "name", "description", "status", "date", "ratings"]
-    : ["id", "name", "description", "status", "date", "severity"];
+    : ["id", "name", "description", "status", "date", "engineer"];
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -135,20 +135,22 @@ export default function AdminDashboard() {
             <option>Sort by</option>
           </select>
         </div>
-        <table className="w-full bg-white overflow-hidden">
+        <table className="w-full bg-white overflow-hidden ">
           <thead className="bg-gray-200 text-left">
             <tr>
               <th className="p-2">
                 <input type="checkbox" />
               </th>
               {displayedColumns.map((col) => (
-                <th key={col} className="p-2 capitalize">{col.replace("_", " ")}</th>
+                <th key={col} className="p-2 capitalize">
+                  {col.replace("_", " ")}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
-          {displayedTickets.map((ticket) => (
-              <TicketRow key={ticket.id} ticket={ticket} isSurvey={isSurvey}/>
+            {displayedTickets.map((ticket) => (
+              <TicketRow key={ticket.id} ticket={ticket} isSurvey={isSurvey} />
             ))}
           </tbody>
         </table>
@@ -173,6 +175,33 @@ export default function AdminDashboard() {
               &gt;
             </button>
           </div>
+        </div>
+      </div>
+
+      <div className="flex justify-between items-center mb-10 mt-10">
+        <div className="flex gap-10 ">
+          <select className="border p-2 rounded bg-gray-200">
+            <option value={""}>Open</option>
+            <option value={""}>Closed</option>
+            <option value={""}>Not Assigned</option>
+          </select>
+          <select className="border p-2 rounded bg-gray-200">
+            <option>Today</option>
+            <option>This Week</option>
+            <option>This Month</option>
+            <option>This Year</option>
+          </select>
+          <select className="border p-2 rounded bg-gray-200">
+            <option>All</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+            <option>Critical</option>
+          </select>
+          <select className="border p-2 rounded bg-gray-200">
+            <option>Last Updated</option>
+            <option>Last Created</option>
+          </select>
         </div>
       </div>
 

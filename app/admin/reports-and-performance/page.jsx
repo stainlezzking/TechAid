@@ -174,7 +174,7 @@ const Dashboard = () => {
   const [reportsOption, setReportsOption] = useState("overall");
 
   return (
-    <div className="p-6">
+    <div className="p-6 font-inter">
       <Navbar />
       <br />
       <header className="flex justify-between items-center mb-6">

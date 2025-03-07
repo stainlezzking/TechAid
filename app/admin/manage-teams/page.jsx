@@ -42,6 +42,13 @@ const teamMembers = [
     status: "Active",
     tickets: 7,
   },
+  {
+    id: 42327,
+    name: "Emily Davis",
+    role: "Auditor",
+    status: "Leave",
+    tickets: 7,
+  },
 ];
 
 const groups = [
