@@ -1,18 +1,12 @@
 "use client"
 
 import Navbar from "@/components/Navbar";
-import Search from "@/public/search.png";
+import Search from "@/components/search";
 import Link from "next/link";
 import Image from "@/public/image (1).png"
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const News = function() {
-    const [value, setValue] = useState('');
-    
-    const handleChange = (e) => {
-      setValue(e.target.value);
-    };
   
     const router = useRouter();
     const handleTicket = () => {
@@ -24,23 +18,7 @@ const News = function() {
             <Navbar/>
             <div className="mx-auto pt-[50px] pb-[34px] xl:max-w-[1200px]">
                 <div className="pb-[83px] pl-[60px] pr-[94px]">
-                    <div className="relative w-full">
-                    <div className={`font-extralight absolute pl-[12px] py-[8px] ${value && 'hidden'}`}>
-                        <img
-                        src={Search.src}
-                        alt="icon"
-                        className="inline-block w-5 h-5 mr-2"
-                        />
-                        Search news
-                    </div>
-
-                    <input
-                        type="text"
-                        value={value}
-                        onChange={handleChange}
-                        className="py-[6px] px-[5px] w-full border border-borderStroke rounded-2xl"
-                    />
-                    </div>
+                    <Search className="w-full rounded-2xl">Search news</Search>
                 </div>
                 <div className="pb-[37px]">Posts and Updates</div>
                 <div className="flex flex-col border-t border-black w-full pb-[25px]">
