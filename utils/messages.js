@@ -11,7 +11,6 @@ export const NAVBAR_TYPES = {
         content: 'TechAid System Assigned Ticket 250211000028 to David Eberechukwu',
         read: false,
         timestamp: '10 mins ago',
-        type: 'message',
         link: 'Go To Ticket',
       },
       {
@@ -19,7 +18,6 @@ export const NAVBAR_TYPES = {
         content: 'David Eberechukwu sent a message on Ticket 25022800054',
         read: true,
         timestamp: '3 hours ago',
-        type: 'update',
         link: 'Go To Ticket',
       },
       {
@@ -28,7 +26,6 @@ export const NAVBAR_TYPES = {
         read: true,
         // timestamp: new Date('2025-03-05T11:15:00'),
         timestamp: '3 hours ago',
-        type: 'request',
         link: 'Go To Post',
       }
     ],
@@ -38,7 +35,6 @@ export const NAVBAR_TYPES = {
         content: 'TechAid System Assigned Ticket 25022800002 to David Eberechukwu',
         read: false,
         timestamp: '10 mins ago',
-        type: 'system',
         link: 'Go To Ticket',
       },
       {
@@ -46,7 +42,6 @@ export const NAVBAR_TYPES = {
         content: 'Olawale Dipo-isijola Asigned Ticket 25022800002',
         read: true,
         timestamp: '1 hour ago',
-        type: 'system',
         link: 'Go To Ticket',
       },
       {
@@ -54,7 +49,6 @@ export const NAVBAR_TYPES = {
         content: 'Faith bernard sent a message on Ticket 25022800054',
         read: true,
         timestamp: '3 hours ago',
-        type: 'alert',
         link: 'Go To Ticket',
       }
     ]
