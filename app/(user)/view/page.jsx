@@ -70,8 +70,8 @@ const View = function() {
                             <span>Troubleshooting</span>
                         </div>
                         <div className="flex flex-col">
-                            <span className="font-extralight">Severity</span>
-                            <span>A</span>
+                            <span className="font-extralight">Criticality</span>
+                            <span>High</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-[24px]">

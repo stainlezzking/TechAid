@@ -9,10 +9,11 @@ const Home = function () {
             <Navbar/>
             <div className="p-[50px] xl:max-w-[1200px] mx-auto">
                 <div className="flex items-center justify-between pb-[20px] ">
-                    <p className="font-medium text-xl">Welcome, Ola</p>
+                    <p className="font-medium text-xl">Welcome, Ezemandu</p>
                     <Link href = "/ticket">
-                        <Button className='w-[180px] py-[12px] 
-                        '>Create a new request</Button>
+                        <Button className='w-[180px] py-[12px]'>
+                            Create a new request
+                        </Button>
                     </Link>
                 </div>
                 <div className="flex gap-8 pb-[30px]">
@@ -141,4 +142,4 @@ const Home = function () {
     ); 
 }
 
-export default Home
+export default Home;

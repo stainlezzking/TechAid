@@ -18,7 +18,7 @@ const Profile = function() {
 
                             <div className="pl-[40px]">
                             <p className="font-semibold">Ezemandu Chukwujike</p>
-                            <p className="font-light text-sm">Database Administration <br/>chukwujike2000@optimusbank.com</p>
+                            <p className="font-light text-sm">Database Administration <br/>EzemanduChukwujike@optimusbank.com</p>
                             </div>
                         </div>
 
@@ -34,35 +34,35 @@ const Profile = function() {
 
                 <div className="pb-[52px]">
                 <Box className="max-h-[350px]">
-                    <div className="flex items-center justify-between px-[34.5px] py-[32px]">
+                    <div className="flex items-center justify-between px-[34.5px] pt-[96px]">
                         <div className="flex flex-col font-bold">
-                            <span className="pb-[40px]">Role:</span>
-                            <span className="pb-[40px]">Password:</span>
-                            <span className="pb-[40px]">Availability:</span>
-                            <span className="pb-[40px]">Created On:</span>
-                            <span className="pb-[40px]">Updated on:</span>
+                            <span className="pb-[41px]">Role:</span>
+                            <span className="pb-[41px]">Created On:</span>
+                            <span className="pb-[41px]">Updated on:</span>
+                            <span className="pb-[23px]">Availability:</span>
                         </div>
                         <div className="flex flex-col">
-                            <span className="pb-[40px]">End-User</span>
-                            <span className="pb-[40px]">**************</span>
-                            <span className="pb-[40px]">
+                            <span className="pb-[41px] font-medium">End-User</span>
+                            <span className="pb-[41px]">02 Jan, 2025</span>
+                            <span className="pb-[41px]">02 Jan, 2025</span>
+                            <span className="pb-[23px]">
                                 <select className="">
                                     <option value="Online">Online</option>
-                                    <option value="Offline">Offline</option>
+                                    <option value="Busy">Busy</option>
+                                    <option value="Offine">Offline</option>  
+                                    <option value="On Leave">On Leave</option>
                                 </select>
                             </span>
-                            <span className="pb-[40px]">02 Jan, 2025</span>
-                            <span className="pb-[40px]">02 Jan, 2025</span>
                         </div>
                         <div className="flex flex-col">
-                            <div className="pt-[51px] pb-[86px]">
-                                <Box className=" flex py-[18px] px-[20px]">
+                        <span className="pt-[68px] pb-[41px]">12:30PM WAT</span>
+                        <span className="">12:30PM WAT</span>
+                            <div className="pt-[14px] pb-[19px]">
+                                <Box className=" flex py-[16px] px-[20px]">
                                     <img className="px-[12px]" src ={icon.src} alt="icon"/>
                                     Edit
                                 </Box>
                             </div>
-                            <span className="pb-[40px]">12:30PM WAT</span>
-                            <span className="pb-[40px]">12:30PM WAT</span>
                         </div>
                     </div>
                 </Box>

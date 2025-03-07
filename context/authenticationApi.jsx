@@ -3,15 +3,38 @@ import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
+// const newUserDataType = {
+//     data: ,
+//     qrcodeURL:
+// }
 export function AuthProvider({ children }) {
-  const [signupData, setSignupData] = useState({
+  const defaultSignUpFormValues = {
     fullname: "",
     email: "",
     password: "",
     department: "",
-  });
-
-  return <AuthContext.Provider value={{ signupState: [signupData, setSignupData] }}>{children}</AuthContext.Provider>;
+  };
+  const [signupData, setSignupData] = useState(defaultSignUpFormValues);
+  const [isNewUser, setisNewUser] = useState(true);
+  const [UserData, setUserData] = useState(null);
+  // i want to reset the context after being authenticated, so they can''t navigate back
+  const clearUserStateAfterAuth = function () {
+    setSignupData(defaultSignUpFormValues);
+    setisNewUser(true);
+    setUserData(null);
+  };
+  return (
+    <AuthContext.Provider
+      value={{
+        isNewUserState: [isNewUser, setisNewUser],
+        signupState: [signupData, setSignupData],
+        UserDataState: [UserData, setUserData],
+        clearContext: clearUserStateAfterAuth,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {

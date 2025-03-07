@@ -17,20 +17,20 @@ const NewsExpand = function () {
                 </div>
                 <div className="font-semibold pb-[10px]">Steps to Resolve:</div>
                 <div>
-                    <ul className="list-disc">
-                        <li>
+                    <ul className="ml-[20px] list-disc">
+                        <li className="pb-[15px]">
                             <span className="font-semibold">Verify credentials: </span>
                             <span>Double-check that your username and password are enter correctly, ensure the Caps Lock key is off.</span>
                         </li>
-                        <li>
+                        <li className="pb-[15px]">
                             <span className="font-semibold">Clear Browser Cache: </span>
                             <span>Old or corrupted cache files may prevent proper login. Clear your browser's cache and cookies, then try again.</span>
                         </li>
-                        <li>
+                        <li className="pb-[15px]">
                             <span className="font-semibold">Use a Private Window: </span>
                             <span>Open an incognito or private browsing session to rule out browser extensions or settings interfering with the login process.</span>
                         </li>
-                        <li>
+                        <li className="pb-[15px]">
                             <span className="font-semibold">Reset Your Password: </span>
                             <span>If you suspect the password might be incorrect, use the "Forgot Password" option to initiate a reset process.</span>
                         </li>
