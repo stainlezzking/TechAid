@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { useAuth } from "@/context/authenticationApi";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const Register = function () {
   const router = useRouter();
@@ -22,7 +23,7 @@ const Register = function () {
   // Handle form submission
   const handleFormSubmit = async (data) => {
     signupState[1](data);
-
+    isNewUserState[1](true);
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/credentials`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -46,8 +47,7 @@ const Register = function () {
         window.location.href = window.location.href;
       }, 3000);
     }
-    UserDataState[1](response.data);
-    isNewUserState[1](true);
+    UserDataState[1]({ data: response.data, qrcodeURL: response.qrcodeURL });
     router.push("/auth/auth-app");
   };
 
@@ -131,6 +131,12 @@ const Register = function () {
           <Button className="" type="submit" disabled={!isValid}>
             {!isSubmitting ? " Register Account" : "Submitting..."}
           </Button>
+          <div className="flex items-center justify-center pt-[10px] text-gray200">
+            Already have an account?
+            <Link href="/auth/login">
+              <span className="text-primaryBlue ml-2">Login</span>
+            </Link>
+          </div>
         </form>
       </div>
     </div>

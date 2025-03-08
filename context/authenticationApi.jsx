@@ -14,7 +14,12 @@ export function AuthProvider({ children }) {
     password: "",
     department: "",
   };
+  const defaultsLoginForValues = {
+    email: "",
+    password: "",
+  };
   const [signupData, setSignupData] = useState(defaultSignUpFormValues);
+  const [loginSData, setLoginData] = useState(defaultsLoginForValues);
   const [isNewUser, setisNewUser] = useState(true);
   const [UserData, setUserData] = useState(null);
   // i want to reset the context after being authenticated, so they can''t navigate back
@@ -28,6 +33,7 @@ export function AuthProvider({ children }) {
       value={{
         isNewUserState: [isNewUser, setisNewUser],
         signupState: [signupData, setSignupData],
+        loginState: [loginSData, setLoginData],
         UserDataState: [UserData, setUserData],
         clearContext: clearUserStateAfterAuth,
       }}

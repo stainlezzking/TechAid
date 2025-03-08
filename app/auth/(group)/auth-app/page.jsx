@@ -8,20 +8,21 @@ const Authentication = function () {
   const router = useRouter();
   const { UserDataState } = useAuth();
 
+  console.log(UserDataState);
   useEffect(() => {
     if (!UserDataState[0]) {
       router.push("/auth");
     }
-  }, [UserDataState, router]); // Run when `UserDataState` changes
+  }, [UserDataState, router]);
 
   if (!UserDataState[0]) {
-    return null; // Prevent rendering while redirecting
+    return null;
   }
 
   return (
     <div className="flex flex-col items-center justify-center w-full mx-auto">
       <h1 className="text-2xl font-bold pb-[49px]">Scan to Enable Two-Step Verification</h1>
-      <img src={userDataState[0].qrcodeURL} alt="QRcode" />
+      <img src={UserDataState[0].qrcodeURL} alt="QRcode" />
       <span className="pt-[32px] pb-[44px]">Scan QR code using an Authenticator App</span>
       <Link
         href="/auth/2FA-auth"

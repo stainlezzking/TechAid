@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { InputOtp } from "@heroui/input-otp";
 import { useAuth } from "@/context/authenticationApi";
+import { signIn } from "next-auth/react";
 
 const Verification = function () {
   const router = useRouter();
@@ -17,10 +18,13 @@ const Verification = function () {
   const { isNewUserState, UserDataState } = useAuth();
 
   useEffect(() => {
-    if (!UserDataState[0]) {
+    if (!UserDataState[0] && isNewUserState[0]) {
       router.push("/auth");
     }
-  }, [UserDataState, router]);
+    if (!UserDataState[0] && !isNewUserState[0]) {
+      router.push("/auth/login");
+    }
+  }, [UserDataState[0], router, isNewUserState[0]]);
 
   if (!UserDataState[0]) {
     return null;
@@ -28,19 +32,38 @@ const Verification = function () {
 
   const handleCodeSubmit = async () => {
     setIsSubmitting(true);
-    const path = isNewUserState[0] ? "/auth/register" : "/auth/login";
+    const path = isNewUserState[0] ? "/auth/register" : "/auth/2FA/login_validation";
 
-    const response = await FetchPost(path, { data: UserDataState[0], code: otp });
-    setIsSubmitting(false);
-    if (!response.success) return toast.warning(response.message);
+    const response = await FetchPost(path, { data: UserDataState[0].data, code: otp });
     if (!response.success && response.redirect) {
       UserDataState[1](null);
+      setIsSubmitting(false);
       setTimeout(() => {
         const path = isNewUserState[0] ? "/auth" : "/auth/login";
         router.push(path);
-      }, 1000);
+      }, 3000);
       return;
     }
+    if (!response.success) {
+      setIsSubmitting(false);
+      return toast.warning(response.message);
+    }
+
+    const { user, token } = response;
+
+    const result = await signIn("credentials", {
+      user: JSON.stringify(user),
+      token,
+      redirect: false,
+    });
+
+    setIsSubmitting(false);
+
+    if (result?.error) {
+      toast.warning(result.error);
+      return;
+    }
+    router.push("/");
     // i want to authenticate this user
   };
 
@@ -61,7 +84,7 @@ const Verification = function () {
           />
         </div>
         <div className="flex">
-          <Link href="/auth">
+          <Link href={isNewUserState[0] ? "/auth" : "/auth/login"}>
             <img src={Arrow.src} className="w-[70px] h-[70px]" alt="arrow" />
           </Link>
           <Button className="ml-5 w-[50%]" type="button" onClick={handleCodeSubmit}>
