@@ -1,12 +1,13 @@
-export default function HomeLayout ({children}) {
-    return(
-        <div className="h-[100vh]">
-            <div className="h-[100vh] max-h-[95%]">
-                {children}
-            </div>
+import Navbar from "@/components/Navbar";
 
-            <div className="fixed bottom-0 right-0 left-0 min-w-screen h-[50px] max-h-[5%] bg-primaryBlue">
-            </div>
-        </div>
-    );
+export const dynamic = "force-dynamic";
+
+export default function HomeLayout({ children }) {
+  return (
+    <div className="max-xl:mx-31px xl:max-w-[1300px] mx-auto">
+      <Navbar />
+      <div className=" min-h-[calc(100%-50px)] p-[50px] xl:max-w-[1200px] mx-auto">{children}</div>
+      <div className="fixed bottom-0 right-0 left-0 min-w-screen h-[50px] bg-primaryBlue"></div>
+    </div>
+  );
 }
