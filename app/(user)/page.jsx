@@ -7,7 +7,7 @@ import DashboardClient from "./dashboardClient";
 const Home = async function () {
   // console.log(session);
   const session = await getServerSession(authOptions);
-  console.log(session);
+
   return (
     <div className="">
       <div className="flex items-center justify-between pb-[20px] ">

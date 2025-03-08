@@ -5,6 +5,7 @@ import Input from "@/components/input";
 import { useAuth } from "@/context/authenticationApi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Login = function () {
@@ -13,7 +14,7 @@ const Login = function () {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm({ defaultValues: loginState[0] });
 
   const handleEmailSubmit = (data) => {
@@ -51,8 +52,8 @@ const Login = function () {
           </Link>
         </div>
 
-        <Button className="" type="submit" disabled={!isValid}>
-          Continue
+        <Button className="py-3" type="submit" disabled={!isValid}>
+          {!isSubmitting ? "Continue" : "Validating..."}
         </Button>
       </form>
 

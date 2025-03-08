@@ -2,7 +2,6 @@
 
 import Button from "@/components/button";
 import { FetchPost } from "@/lib/utils";
-import Arrow from "@/public/arrow.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -46,7 +45,7 @@ const Verification = function () {
     }
     if (!response.success) {
       setIsSubmitting(false);
-      return toast.warning(response.message);
+      return toast.warning(response.message, { position: "top-right" });
     }
 
     const { user, token } = response;
@@ -83,11 +82,19 @@ const Verification = function () {
             }}
           />
         </div>
-        <div className="flex">
-          <Link href={isNewUserState[0] ? "/auth" : "/auth/login"}>
-            <img src={Arrow.src} className="w-[70px] h-[70px]" alt="arrow" />
+        <div className="flex items-center gap-x-3">
+          <Link href="/auth/login" className="block p-3 bg-gray100 hover:bg-gray200 group rounded-[6px]">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M10 19L3 12M3 12L10 5M3 12L21 12"
+                className="stroke-[#6B7280] group-hover:stroke-white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </Link>
-          <Button className="ml-5 w-[50%]" type="button" onClick={handleCodeSubmit}>
+          <Button className="py-3 w-[50%]" type="button" onClick={handleCodeSubmit}>
             {!submitting ? "Confirm" : "Submitting..."}
           </Button>
         </div>

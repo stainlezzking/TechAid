@@ -54,7 +54,7 @@ const Password = function () {
         <div className="flex flex-col pb-[20px]">
           <label className="pb-[10px] flex">
             Sign in as
-            <div className=" ml-2 bg-primaryBlue text-white rounded-md">i@optimusbank.com</div>
+            <div className=" ml-2 bg-primaryBlue text-white rounded-md">{loginState[0].email}</div>
           </label>
           <Input
             type="password"
@@ -77,12 +77,20 @@ const Password = function () {
           </Link>
         </div>
 
-        <div className="flex">
-          <Link href="../auth/login">
-            <img src={Arrow.src} className="w-[70px] h-[70px]" alt="arrow" />
+        <div className="flex items-center gap-x-3">
+          <Link href="/auth/login" className="block p-3 bg-gray100 hover:bg-gray200 group rounded-[6px]">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M10 19L3 12M3 12L10 5M3 12L21 12"
+                className="stroke-[#6B7280] group-hover:stroke-white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </Link>
 
-          <Button className="ml-5 w-[460px]" type="Submit">
+          <Button className="py-3 w-[460px]" type="Submit">
             {!isSubmitting ? "Confirm" : "Submitting"}
           </Button>
         </div>

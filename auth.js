@@ -10,6 +10,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
+          console.log(credentials);
           const user = JSON.parse(credentials.user);
 
           return {
@@ -17,6 +18,7 @@ export const authOptions = {
             email: user.email,
             fullname: user.fullname,
             token: credentials.token,
+            role: user.role,
           };
         } catch (error) {
           throw new Error(error.message);
@@ -31,6 +33,7 @@ export const authOptions = {
         token.email = user.email;
         token.fullname = user.fullname;
         token.token = user.token;
+        token.role = user.role;
       }
       return token;
     },
@@ -39,6 +42,7 @@ export const authOptions = {
       session.user.email = token.email;
       session.user.fullname = token.fullname;
       session.user.token = token.token;
+      session.user.role = token.role;
       return session;
     },
   },
