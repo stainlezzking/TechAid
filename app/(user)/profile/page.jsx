@@ -1,78 +1,106 @@
-import Navbar from "@/components/Navbar";
+import authOptions from "@/auth";
 import Box from "@/components/box";
+import ErrorComponent from "@/components/error";
+import LogoutComp from "@/components/logoutComponent";
 import image from "@/public/Image.png";
 import icon from "@/public/icon_1.png";
+import { format, formatDate } from "date-fns";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-const Profile = function() {
-    return (
-        <div className="mx-[31px]">
-            <Navbar/>
-            <div className="pt-[77px] xl:max-w-[1200px] mx-auto">
-                <div className="pb-[75px]">
-                <Box className="flex max-h-[200px]">
-                    <div className="w-[100%] flex items-center justify-between p-[39px]">
-                        <div className="flex items-center">
-                            <div className="">
-                            <img src={image.src} alt="picture"/>
-                            </div>
+const Profile = async function () {
+  const session = await getServerSession(authOptions);
+  if (!session && !session.user && !session.user.token) {
+    return redirect("/logout");
+  }
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/staffs/profile`, {
+    method: "GET",
+    headers: {
+      Authorization: session.user.token,
+    },
+  })
+    .then((d) => d.json())
+    .catch((err) => {
+      console.log(err);
+      return { err, success: false, message: err.message };
+    });
+  if (response.unauthorized) {
+    return redirect("/logout");
+  }
 
-                            <div className="pl-[40px]">
-                            <p className="font-semibold">Ezemandu Chukwujike</p>
-                            <p className="font-light text-sm">Database Administration <br/>EzemanduChukwujike@optimusbank.com</p>
-                            </div>
-                        </div>
-
-                        <div className="pl-[50px]">
-                            <Box className=" flex py-[18px] px-[20px]">
-                                <img className="px-[12px]" src ={icon.src} alt="icon"/>
-                                Edit
-                            </Box>
-                        </div>
-                    </div>
-                </Box>
+  if (!response.success) {
+    return <ErrorComponent message={response.message} />;
+  }
+  const { user } = response;
+  return (
+    <div className="mx-[31px]">
+      <div className="pt-[77px] xl:max-w-[1200px] mx-auto">
+        <div className="pb-[75px]">
+          <Box className="flex max-h-[200px]">
+            <div className="w-[100%] flex items-center justify-between p-[39px]">
+              <div className="flex items-center">
+                <div className="">
+                  <img src={image.src} alt="picture" />
                 </div>
 
-                <div className="pb-[52px]">
-                <Box className="max-h-[350px]">
-                    <div className="flex items-center justify-between px-[34.5px] pt-[96px]">
-                        <div className="flex flex-col font-bold">
-                            <span className="pb-[41px]">Role:</span>
-                            <span className="pb-[41px]">Created On:</span>
-                            <span className="pb-[41px]">Updated on:</span>
-                            <span className="pb-[23px]">Availability:</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="pb-[41px] font-medium">End-User</span>
-                            <span className="pb-[41px]">02 Jan, 2025</span>
-                            <span className="pb-[41px]">02 Jan, 2025</span>
-                            <span className="pb-[23px]">
-                                <select className="">
-                                    <option value="Online">Online</option>
-                                    <option value="Busy">Busy</option>
-                                    <option value="Offine">Offline</option>  
-                                    <option value="On Leave">On Leave</option>
-                                </select>
-                            </span>
-                        </div>
-                        <div className="flex flex-col">
-                        <span className="pt-[68px] pb-[41px]">12:30PM WAT</span>
-                        <span className="">12:30PM WAT</span>
-                            <div className="pt-[14px] pb-[19px]">
-                                <Box className=" flex py-[16px] px-[20px]">
-                                    <img className="px-[12px]" src ={icon.src} alt="icon"/>
-                                    Edit
-                                </Box>
-                            </div>
-                        </div>
-                    </div>
-                </Box>
+                <div className="pl-[40px]">
+                  <p className="font-semibold">{user.fullname}</p>
+                  <p className="font-light text-sm">
+                    {user.department} <br />
+                    {user.email}
+                  </p>
                 </div>
-                <button className="border border-borderActive px-[38px] py-[12px] rounded-lg ">
-                    Logout
-                </button>
+              </div>
+
+              <div className="pl-[50px]">
+                <Box className=" flex py-[18px] px-[20px]">
+                  <img className="px-[12px]" src={icon.src} alt="icon" />
+                  Edit
+                </Box>
+              </div>
             </div>
+          </Box>
         </div>
-    );  
-}
 
-export default Profile
+        <div className="pb-[72px]">
+          <Box className="max-h-[350px]">
+            <div className="flex items-center justify-between px-[34.5px] pt-[96px]">
+              <div className="flex flex-col font-bold">
+                <span className="pb-[41px]">Role:</span>
+                <span className="pb-[41px]">Created On:</span>
+                <span className="pb-[41px]">Updated on:</span>
+                <span className="pb-[23px]">Availability:</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="pb-[41px] font-medium">End-User</span>
+                <span className="pb-[41px]">{format(new Date(user.createdAt), "dd MMM, yyyy")}</span>
+                <span className="pb-[41px]">{format(new Date(user.updatedAt), "dd MMM, yyyy")}</span>
+                <span className="pb-[23px]">
+                  <select className="">
+                    <option value="Online">Online</option>
+                    <option value="Busy">Busy</option>
+                    <option value="Offine">Offline</option>
+                    <option value="On Leave">On Leave</option>
+                  </select>
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="pt-[68px] pb-[41px]">12:30PM WAT</span>
+                <span className="">12:30PM WAT</span>
+                <div className="pt-[14px] pb-[19px]">
+                  <Box className=" flex py-[16px] px-[20px]">
+                    <img className="px-[12px]" src={icon.src} alt="icon" />
+                    Edit
+                  </Box>
+                </div>
+              </div>
+            </div>
+          </Box>
+        </div>
+        <LogoutComp />
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
