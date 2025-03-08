@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Notification from "@/components/notification";
 import Button from "@/components/button";
 import Box from "@/components/box";
 import Link from "next/link";
@@ -11,7 +12,7 @@ const Home = function () {
                 <div className="flex items-center justify-between pb-[20px] ">
                     <p className="font-medium text-xl">Welcome, Ezemandu</p>
                     <Link href = "/ticket">
-                        <Button className='w-[180px] py-[12px]'>
+                        <Button className='w-[200px] p-[12px]'>
                             Create a new request
                         </Button>
                     </Link>
@@ -136,8 +137,8 @@ const Home = function () {
                     </Link>
                     </Box>
                 </div>
-            
             </div>
+            
         </div>
     ); 
 }

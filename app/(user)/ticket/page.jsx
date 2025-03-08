@@ -8,23 +8,31 @@ import Input from "@/components/input";
 import Button from "@/components/button";
 import Phone from "@/public/phone.png";
 import Email from "@/public/email.png";
+import Confirmation from "@/public/confirmation.png";
 
 const Ticket = function() {
   const [selectedValue, setSelectedValue] = useState('');
-       const handleChange = (e) => {
-        setSelectedValue(e.target.value);
-       };
+    const handleChange = (e) => {
+    setSelectedValue(e.target.value);
+    };
+
+  const [isOpen, setIsOpen] = useState(false);     
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+    };
 
   const router = useRouter();
-      const handleTicket = () => {
-          router.push('/')
-      };
+    const handleHome = () => {
+    setIsOpen(isOpen);
+    router.push('/')
+    };
 
     return (
         <div className="mx-[31px]">
             <Navbar/>
             <div className="mx-auto pt-[26px] xl:max-w-[1200px]">
-                <form onSubmit={handleTicket}>
+                <form onSubmit={handleSubmit}>
                     <div className="pb-[22px]">
                         <Box className="pl-[60px] pr-[94px] py-[24px] w-full">
                             <div className="font-medium">
@@ -92,7 +100,7 @@ const Ticket = function() {
                                                 type="radio" 
                                                 id="phone/teams call" 
                                                 name="Contact"
-                                                value="Phone/Teams"
+                                                value="Phone/Teams call"
                                                 onChange={handleChange}
                                                 checked={selectedValue === 'Phone/Teams call'}/>
 
@@ -109,12 +117,17 @@ const Ticket = function() {
                                                 type="radio" 
                                                 id="email/teams chat" 
                                                 name="Contact"
-                                                value="Email/Teams"
+                                                value="Email/Teams chat"
                                                 onChange={handleChange}
                                                 checked={selectedValue === 'Email/Teams chat'}/>
                                         </div>
                                         <div>
-                                            <Button className="px-[20px] py-[5px]">Submit</Button>
+                                            <Button 
+                                                className="px-[20px] py-[5px]"
+                                                type="submit"
+                                            >
+                                                Submit
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>
@@ -122,8 +135,24 @@ const Ticket = function() {
                         </Box>
                     </div>
                 </form>
+                {isOpen && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                        <div className="flex flex-col items-center justify-center bg-white py-[25px] px-[41px] rounded-lg shadow-lg max-w-xl w-full">
+                            <img className="w-[120px] pb-[40px]" src={Confirmation.src} alt="confirmation"/>
+                            <span className="text-xl font-semibold pb-[80px] text-center">Your ticket with id 2502110002 has been successfully created.</span>
+                            
+                            <Button
+                                onClick={handleHome}
+                                className="px-4 py-2 w-[40%]"
+                                type="button"
+                            >
+                                Let's Start!
+                            </Button>
+                        </div>
+                    </div>
+                )}
             </div>
-        </div>
+        </div> 
     );
 }
 
