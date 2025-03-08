@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Notification from "@/components/notification";
 import Button from "@/components/button";
 import Box from "@/components/box";
 import Link from "next/link";
