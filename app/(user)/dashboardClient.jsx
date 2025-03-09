@@ -48,18 +48,15 @@ const DashboardClient = ({ tickets: ticks }) => {
             <TicketPreview title={title} _id={_id} key={_id} priority={priority} createdAt={createdAt} updatedAt={updatedAt} status={status} />
           ))
         ) : (
-          <div className="flex items-center justify-center h-1/3 space-y-3 flex-col w-full py-5">
+          <div className="bg-muted flex items-center justify-center h-[250px] space-y-3 flex-col w-full py-5">
             <h1>You don't have any tickets...</h1>
-            <svg className="w-20" viewBox="0 0 24 24" fill="none">
+            <svg className="w-10" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
               <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
                 <path
-                  d="M10 12L14 16M14 12L10 16M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6"
-                  stroke="#000000"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  d="M618.666667 490.666667H405.333333L149.333333 192h725.333334zM618.666667 810.666667l-213.333334 128V490.666667h213.333334zM885.333333 192h-746.666666C121.6 192 106.666667 177.066667 106.666667 160S121.6 128 138.666667 128h746.666666c17.066667 0 32 14.933333 32 32S902.4 192 885.333333 192z"
+                  fill="#000000"
                 ></path>
               </g>
             </svg>

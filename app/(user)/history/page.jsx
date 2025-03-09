@@ -10,6 +10,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { toast } from "sonner";
 import { fetchGet } from "@/lib/server";
+import { format } from "date-fns";
 
 const History = function () {
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +34,7 @@ const History = function () {
           name: ticket.assignedTo?.fullname || "unassigned",
           description: ticket.description,
           status: ticket.status,
-          dateOpened: ticket.updatedAt,
+          dateOpened: format(ticket.updatedAt, "dd MMM, yyyy"),
         };
       });
       setFetchingData(false);

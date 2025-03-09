@@ -1,29 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Logo from "@/public/logo.png";
 import Notification from "@/components/notification";
-import notification from "@/public/notification.png";
 import Profile from "@/public/profile-pic.png";
-import { NAVBAR_TYPES, getUnreadCount } from "@/utils/messages";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import NavbarSkeleton from "./navbar-skeleton";
 
 const Navbar = function () {
-  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const pathname = usePathname();
-  const navbarType = NAVBAR_TYPES.MAIN;
-  const unreadCount = getUnreadCount(navbarType);
 
   const { data: session, status } = useSession();
   console.log("--- session from navbar---");
   console.log(session);
 
-  const handleNotificationClick = () => {
-    setIsNotificationOpen(!isNotificationOpen); // Toggle notification visibility
-  };
   if (status == "loading" || status != "authenticated") {
     return <NavbarSkeleton />;
   }
@@ -89,16 +80,7 @@ const Navbar = function () {
         </div>
         <div className="space-x-8 flex items-center">
           <div>
-            <button onClick={handleNotificationClick} className="relative block">
-              <img width="15px" src={notification.src} alt="notification" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-1 -left-1 bg-red-500 text-white text-[8px] rounded-full h-3 w-3 flex items-center justify-center">
-                  {unreadCount}
-                </span>
-              )}
-            </button>
-
-            <Notification isOpen={isNotificationOpen} setIsOpen={setIsNotificationOpen} navbarType={navbarType} />
+            <Notification />
           </div>
 
           <div>
