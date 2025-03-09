@@ -5,42 +5,8 @@ import { priorityOptions, sortingOptions, statusOptions } from "@/lib/datas";
 import { useState, useMemo } from "react";
 import { compareDesc, parseISO } from "date-fns";
 
-const DashboardClient = ({ tickets }) => {
-  const ticks = [
-    {
-      title: "Login Issue",
-      id: "ticket_001",
-      priority: "High",
-      createdAt: "2025-03-01T10:30:00Z",
-      updatedAt: "2025-03-02T08:00:00Z",
-      status: "open",
-    },
-    {
-      title: "Network Downtime",
-      id: "ticket_002",
-      priority: "Critical",
-      createdAt: "2025-03-02T12:15:00Z",
-      updatedAt: "2025-03-03T09:45:00Z",
-      status: "in-progress",
-    },
-    {
-      title: "Software Update Request",
-      id: "ticket_003",
-      priority: "Medium",
-      createdAt: "2025-03-03T08:45:00Z",
-      updatedAt: "2025-03-04T14:20:00Z",
-      status: "open",
-    },
-    {
-      title: "Printer Not Working",
-      id: "ticket_004",
-      priority: "Low",
-      createdAt: "2025-02-04T14:20:00Z",
-      updatedAt: "2025-03-05T10:30:00Z",
-      status: "resolved",
-    },
-  ];
-
+const DashboardClient = ({ tickets: ticks }) => {
+  console.log(ticks);
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [sortBy, setSortBy] = useState("Last updated");
@@ -77,9 +43,9 @@ const DashboardClient = ({ tickets }) => {
       </div>
 
       <div className="flex justify-between gap-y-[16px] gap-x-[32px] flex-wrap">
-        {!filteredTickets.length ? (
-          filteredTickets.map(({ title, id, priority, createdAt, updatedAt, status }) => (
-            <TicketPreview title={title} key={id} priority={priority} createdAt={createdAt} updatedAt={updatedAt} status={status} />
+        {filteredTickets.length ? (
+          filteredTickets.map(({ title, _id, priority, createdAt, updatedAt, status }) => (
+            <TicketPreview title={title} _id={_id} key={_id} priority={priority} createdAt={createdAt} updatedAt={updatedAt} status={status} />
           ))
         ) : (
           <div className="flex items-center justify-center h-1/3 space-y-3 flex-col w-full py-5">

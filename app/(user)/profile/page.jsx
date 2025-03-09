@@ -1,4 +1,3 @@
-import authOptions from "@/auth";
 import Box from "@/components/box";
 import ErrorComponent from "@/components/error";
 import LogoutComp from "@/components/logoutComponent";
@@ -6,16 +5,10 @@ import { fetchGet } from "@/lib/server";
 import image from "@/public/Image.png";
 import icon from "@/public/icon_1.png";
 import { format } from "date-fns";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 const Profile = async function () {
-  const session = await getServerSession(authOptions);
-  if (!session || !session.user?.token) {
-    return redirect("/logout");
-  }
-
-  const response = await fetchGet("/staffs/profile", session.user.token);
+  const response = await fetchGet("/staffs/profile");
 
   if (response.unauthorized) {
     return redirect("/logout");

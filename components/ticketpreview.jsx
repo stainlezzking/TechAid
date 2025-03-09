@@ -2,11 +2,11 @@ import Box from "./box";
 import Link from "next/link";
 import { format } from "date-fns";
 
-const TicketPreview = function ({ title, priority, createdAt, id, status }) {
+const TicketPreview = function ({ title, priority, createdAt, _id, status }) {
   return (
     <Box className=" w-[calc(50%-16px)] max-h-[160px] px-[23px] py-[19px] text-sm">
       <div className="flex items-center justify-between pb-[10px]">
-        <Link href={"tickets/" + id}>
+        <Link href={"tickets/" + _id} className="hover:underline">
           #7364 <span className="ml-1">{title}</span>
         </Link>
         <div className="border border-black rounded-xl px-[28px] py-[6px] ">{status.replace("-", " ")}</div>

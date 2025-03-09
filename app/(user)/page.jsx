@@ -6,13 +6,14 @@ import { getServerSession } from "next-auth/next";
 import DashboardClient from "./dashboardClient";
 import { fetchGet } from "@/lib/server";
 import ErrorComponent from "@/components/error";
+import { redirect } from "next/navigation";
 const Home = async function () {
   const session = await getServerSession(authOptions);
   if (!session || !session.user?.token) {
     return redirect("/logout");
   }
 
-  const response = await fetchGet("/ticket/mytickets", session.user.token);
+  const response = await fetchGet("/ticket/mytickets");
 
   if (response.unauthorized) {
     return redirect("/logout");
