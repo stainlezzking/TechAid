@@ -2,28 +2,21 @@ import authOptions from "@/auth";
 import Box from "@/components/box";
 import ErrorComponent from "@/components/error";
 import LogoutComp from "@/components/logoutComponent";
+import { fetchGet } from "@/lib/server";
 import image from "@/public/Image.png";
 import icon from "@/public/icon_1.png";
-import { format, formatDate } from "date-fns";
+import { format } from "date-fns";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 const Profile = async function () {
   const session = await getServerSession(authOptions);
-  if (!session && !session.user && !session.user.token) {
+  if (!session || !session.user?.token) {
     return redirect("/logout");
   }
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/staffs/profile`, {
-    method: "GET",
-    headers: {
-      Authorization: session.user.token,
-    },
-  })
-    .then((d) => d.json())
-    .catch((err) => {
-      console.log(err);
-      return { err, success: false, message: err.message };
-    });
+
+  const response = await fetchGet("/staffs/profile", session.user.token);
+
   if (response.unauthorized) {
     return redirect("/logout");
   }
@@ -31,6 +24,7 @@ const Profile = async function () {
   if (!response.success) {
     return <ErrorComponent message={response.message} />;
   }
+
   const { user } = response;
   return (
     <div className="mx-[31px]">

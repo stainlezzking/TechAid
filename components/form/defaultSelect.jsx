@@ -1,6 +1,6 @@
-const DefaultSelect = ({ options }) => {
+const DefaultSelect = ({ options, ...props }) => {
   return (
-    <select className="border border-black p-[5px] rounded-xl">
+    <select {...props} className="border border-black p-[5px] rounded-xl">
       {options.map(({ value, title }) => (
         <option key={value} value={value}>
           {title}
