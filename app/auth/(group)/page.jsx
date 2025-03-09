@@ -17,7 +17,7 @@ const Register = function () {
     control,
     register,
     handleSubmit,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm({ defaultValues: signupState[0] });
 
   // Handle form submission
@@ -101,7 +101,6 @@ const Register = function () {
 
           {/* Department Field */}
           <div>
-            {/* <label className="flex flex-col pb-[5px] text-gray200">Department</label> */}
             <Controller
               control={control}
               name="department"
@@ -128,9 +127,7 @@ const Register = function () {
             {errors.terms && <span className="text-red-500 text-sm">{errors.terms.message}</span>}
           </div>
 
-          <Button className="" type="submit" disabled={!isValid}>
-            {!isSubmitting ? " Register Account" : "Submitting..."}
-          </Button>
+          <Button type="submit">{!isSubmitting ? " Register Account" : "Submitting..."}</Button>
           <div className="flex items-center justify-center pt-[10px] text-gray200">
             Already have an account?
             <Link href="/auth/login">

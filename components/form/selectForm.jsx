@@ -1,6 +1,5 @@
 "use clinet";
 import { Select, SelectItem, SelectSection } from "@heroui/select";
-// import { useEffect } from "react";
 
 function CaretDownIcon() {
   return (
@@ -11,7 +10,7 @@ function CaretDownIcon() {
 }
 export default function SelectForm({ options, value, onChange, name, label, ...rest }) {
   const handleSelectChange = (selectedValue) => {
-    onChange(selectedValue); // This calls onChange from react-hook-form
+    onChange(selectedValue);
   };
 
   return (
@@ -28,7 +27,7 @@ export default function SelectForm({ options, value, onChange, name, label, ...r
       >
         <SelectSection className="bg-white space-y-1 py-2 rounded-md shadow-md w-full">
           {options.map((dpt) => (
-            <SelectItem key={dpt.key} value={dpt.key} className="p-2 hover:bg-gray200/10">
+            <SelectItem key={dpt.label} className="p-2 hover:bg-gray200/10">
               {dpt.label}
             </SelectItem>
           ))}
