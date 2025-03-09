@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Box from "@/components/box";
 import Input from "@/components/input";
 import Button from "@/components/button";
@@ -14,6 +13,7 @@ import { FetchAuthPost } from "@/lib/server";
 import { signOut } from "next-auth/react";
 import { toast } from "sonner";
 import { format } from "date-fns";
+import FrequentlyEncounteredIssues from "@/components/encounteredIssues";
 
 const Ticket = function () {
   const [selectedValue, setSelectedValue] = useState("");
@@ -22,7 +22,6 @@ const Ticket = function () {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -51,16 +50,7 @@ const Ticket = function () {
     <div className="mx-[31px]">
       <div className="mx-auto pt-[26px] xl:max-w-[1200px]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="pb-[22px]">
-            <Box className="pl-[60px] pr-[94px] py-[24px] w-full">
-              <div className="font-medium">Frequently encountered issues</div>
-              <div className="flex flex-col">
-                <label className="font-extralight pb-[10px]">Tell us about your problem so we can get you the right help and support</label>
-
-                <Input className="py-[16px] border-none" type="text" placeholder="Example: I have issues logging into my computer"></Input>
-              </div>
-            </Box>
-          </div>
+          <FrequentlyEncounteredIssues />
           <div>
             <Box className="pl-[70px] pr-[97px] py-[25px]">
               <div className="flex flex-col">
