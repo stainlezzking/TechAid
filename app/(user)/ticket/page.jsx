@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { FetchAuthPost } from "@/lib/server";
 import { signOut } from "next-auth/react";
 import { toast } from "sonner";
+import { format } from "date-fns";
 
 const Ticket = function () {
   const [selectedValue, setSelectedValue] = useState("");
@@ -43,7 +44,7 @@ const Ticket = function () {
       return;
     }
     toast.success("Successful", { position: "top-right" });
-    setIsOpen(response.ticket._id);
+    setIsOpen({ _id: response.ticket._id, displayId: format(new Date(), "yyMMdd") + response.ticket._id._id.replace(/[^0-9]/g, "").substring(0, 4) });
   };
 
   return (
@@ -167,7 +168,9 @@ const Ticket = function () {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="flex flex-col items-center justify-center bg-white py-[25px] px-[41px] rounded-lg shadow-lg max-w-xl w-full">
               <img className="w-[120px] pb-[40px]" src={Confirmation.src} alt="confirmation" />
-              <span className="text-xl font-semibold pb-[80px] text-center">Your ticket with id 2502110002 has been successfully created.</span>
+              <span className="text-xl font-semibold pb-[80px] text-center">
+                Your ticket with id {format(new Date(), "yyMMdd") + ticket._id.replace(/[^0-9]/g, "").substring(0, 4)} has been successfully created.
+              </span>
 
               <Link
                 href={"/ticket/" + isOpen}

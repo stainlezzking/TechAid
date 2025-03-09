@@ -15,6 +15,7 @@ const Profile = async function () {
   }
 
   if (!response.success) {
+    console.log(response);
     return <ErrorComponent message={response.message} />;
   }
 
