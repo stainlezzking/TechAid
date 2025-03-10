@@ -1,8 +1,28 @@
 "use client";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { fetchGet } from "@/lib/server";
 import notification from "@/public/notification.png";
+import { signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Notification = function ({}) {
+  const [noti, setNoti] = useState([]);
+
+  useEffect(function () {
+    const getMyNotifications = async function () {
+      const response = await fetchGet("/not/mynotifications");
+      if (response.unauthorized) {
+        return signOut();
+      }
+      if (!response.success) {
+        return toast.error(response.message);
+      }
+      setNoti(response.data);
+      return;
+    };
+    getMyNotifications();
+  }, []);
   return (
     <div>
       <Sheet>
@@ -29,26 +49,19 @@ const Notification = function ({}) {
             <p> Notifications</p>
           </SheetTitle>
           <ul className="text-sm text-gray-700 pt-5 space-y-[17px]">
-            <li className=" rounded-md pt-[15.5px] pb-[10px] pl-[26px] pr-[32px] bg-[#EEEEEE] cursor-pointer hover:bg-gray-50 ">
-              <div className="pb-[14.5px]">
-                <div>TechAid System Assigned Ticket \25022800002\ to David Eberechukwu</div>
-              </div>
-
-              <div className="flex justify-between">
-                <div className="text-xs text-borderActive">Go To Ticket</div>
-                <div className="text-xs text-gray-500">3 hours ago</div>
-              </div>
-            </li>
-            <li className=" rounded-md pt-[15.5px] pb-[10px] pl-[26px] pr-[32px]  cursor-pointer hover:bg-gray-50  bg-blue-50">
-              <div className="pb-[14.5px]">
-                <div>Olawale Dipo-isijola Asigned Ticket 25022800002</div>
-              </div>
-
-              <div className="flex justify-between">
-                <div className="text-xs text-borderActive">Go To Ticket</div>
-                <div className="text-xs text-gray-500">1 hour ago</div>
-              </div>
-            </li>
+            {noti.map((alert) => (
+              <li key={alert._id} className=" rounded-md pt-[15.5px] pb-[10px] pl-[26px] pr-[32px]  cursor-pointer hover:bg-gray-50  bg-blue-50">
+                <div className="pb-[14.5px]">
+                  <div>{alert.message}</div>
+                </div>
+                <div className="flex justify-between">
+                  <a href={"/ticket/" + alert.ticketId} className="text-xs text-borderActive">
+                    Go To Ticket
+                  </a>
+                  <div className="text-xs text-gray-500">1 hour ago</div>
+                </div>
+              </li>
+            ))}
           </ul>
         </SheetContent>
       </Sheet>

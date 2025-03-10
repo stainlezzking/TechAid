@@ -14,7 +14,7 @@ const Login = function () {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm({ defaultValues: loginState[0] });
 
   const handleEmailSubmit = (data) => {
@@ -52,7 +52,7 @@ const Login = function () {
           </Link>
         </div>
 
-        <Button className="py-3" type="submit" disabled={!isValid}>
+        <Button className="py-3" type="submit">
           {!isSubmitting ? "Continue" : "Validating..."}
         </Button>
       </form>

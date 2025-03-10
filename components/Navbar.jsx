@@ -27,7 +27,7 @@ const Navbar = function () {
         </Link>
       </div>
 
-      <div className="flex items-center w-[35%] justify-between">
+      <div className={`flex items-center ${session.user.role == "user" ? "w-[35%]" : "w-[45%]"} justify-between`}>
         <div className="flex justify-between grow w-full items-center me-5">
           {session.user.role == "user" && (
             <>
