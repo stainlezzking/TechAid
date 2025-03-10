@@ -5,19 +5,9 @@ import Logo from "@/public/logo.png";
 import Notification from "@/components/notification";
 import Profile from "@/public/profile-pic.png";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
-import NavbarSkeleton from "./navbar-skeleton";
 
-const Navbar = function () {
+const Navbar = function ({ session }) {
   const pathname = usePathname();
-
-  const { data: session, status } = useSession();
-  console.log("--- session from navbar---");
-  console.log(session);
-
-  if (status == "loading" || status != "authenticated") {
-    return <NavbarSkeleton />;
-  }
 
   return (
     <div className="flex items-center justify-between p-2">

@@ -1,6 +1,7 @@
 import Box from "./box";
 import Link from "next/link";
 import { format } from "date-fns";
+import { twMerge } from "tailwind-merge";
 
 const TicketPreview = function ({ title, priority, createdAt, _id, status }) {
   return (
@@ -9,7 +10,9 @@ const TicketPreview = function ({ title, priority, createdAt, _id, status }) {
         <Link href={"ticket/" + _id} className="hover:underline">
           #7364 <span className="ml-1">{title}</span>
         </Link>
-        <div className="border border-black rounded-xl px-[28px] py-[6px] ">{status.replace("-", " ")}</div>
+        <div className={twMerge("border border-black rounded-xl px-[28px] py-[6px]", status == "open" ? "border-[#4AF117] text-[#4AF117]" : "")}>
+          {status.replace("-", " ")}
+        </div>
       </div>
       <div className="flex flex-row justify-between font-light  pb-[3px]">
         <span>Submitted</span>

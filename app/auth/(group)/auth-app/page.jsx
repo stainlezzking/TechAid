@@ -8,7 +8,6 @@ const Authentication = function () {
   const router = useRouter();
   const { UserDataState } = useAuth();
 
-  console.log(UserDataState);
   useEffect(() => {
     if (!UserDataState[0]) {
       router.push("/auth");
@@ -24,10 +23,7 @@ const Authentication = function () {
       <h1 className="text-2xl font-bold pb-[49px]">Scan to Enable Two-Step Verification</h1>
       <img src={UserDataState[0].qrcodeURL} alt="QRcode" />
       <span className="pt-[32px] pb-[44px]">Scan QR code using an Authenticator App</span>
-      <Link
-        href="/auth/2FA-auth"
-        className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block w-[214px] text-center py-[12px]"
-      >
+      <Link href="/auth/2FA-auth" className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block w-[214px] text-center py-[12px]">
         Next
       </Link>
     </div>

@@ -24,7 +24,7 @@ const Ticket = function () {
     formState: { errors },
   } = useForm();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [newTicket, setnewTicket] = useState(false);
 
   const onSubmit = async function (data) {
     if (!selectedValue) return;
@@ -43,7 +43,7 @@ const Ticket = function () {
       return;
     }
     toast.success("Successful", { position: "top-right" });
-    setIsOpen({ _id: response.ticket._id, displayId: format(new Date(), "yyMMdd") + response.ticket._id._id.replace(/[^0-9]/g, "").substring(0, 4) });
+    setnewTicket({ _id: response.ticket._id, displayId: response.ticket.displayId });
   };
 
   return (
@@ -65,7 +65,7 @@ const Ticket = function () {
 
                 <label className="pt-[35px] pb-[15px]">Description:</label>
                 <textarea
-                  className="rounded-lg shadow-md px-[5px]"
+                  className="rounded-lg shadow-md px-[5px] h-[100px] focus:outline-none focus:border-borderStroke p-2"
                   placeholder="Describe your issue in detail"
                   {...register("description", { required: "Description is required" })}
                 />
@@ -154,16 +154,14 @@ const Ticket = function () {
             </Box>
           </div>
         </form>
-        {isOpen && (
+        {newTicket && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="flex flex-col items-center justify-center bg-white py-[25px] px-[41px] rounded-lg shadow-lg max-w-xl w-full">
               <img className="w-[120px] pb-[40px]" src={Confirmation.src} alt="confirmation" />
-              <span className="text-xl font-semibold pb-[80px] text-center">
-                Your ticket with id {format(new Date(), "yyMMdd") + ticket._id.replace(/[^0-9]/g, "").substring(0, 4)} has been successfully created.
-              </span>
+              <span className="text-xl font-semibold pb-[80px] text-center">Your ticket with id {newTicket.displayId} has been successfully created.</span>
 
               <Link
-                href={"/ticket/" + isOpen}
+                href={"/ticket/" + newTicket._id}
                 className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block text-center px-4 py-2 w-[40%]"
               >
                 Let's Start!

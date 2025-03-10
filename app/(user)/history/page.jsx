@@ -53,7 +53,7 @@ const History = function () {
           </div>
           <div className="pr-[20px]">
             <Link
-              href="/ticket/new"
+              href="/ticket/"
               className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block w-full text-center px-[12px] py-[6px]"
             >
               + Create Ticket

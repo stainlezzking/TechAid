@@ -70,7 +70,7 @@ const View = async function ({ params }) {
             </div>
           </div>
         </div>
-        <ClientTicketPage id={id} notes={ticket.notes} userId={session.user.id} />
+        <ClientTicketPage id={id} notes={ticket.notes} userId={session.user.id} status={ticket.status} />
       </div>
     </div>
   );

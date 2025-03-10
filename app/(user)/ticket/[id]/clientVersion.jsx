@@ -3,8 +3,10 @@
 import Box from "@/components/box";
 import AddMessage from "@/components/addMessage";
 import { useState } from "react";
+import Button from "@/components/button";
+import Link from "next/link";
 
-const ClientTicketPage = function ({ id, notes: passedNotes, userId }) {
+const ClientTicketPage = function ({ id, notes: passedNotes, userId, status }) {
   const [notes, setNotes] = useState([...passedNotes.reverse()]);
 
   const updateNote = function (notes) {
@@ -27,7 +29,13 @@ const ClientTicketPage = function ({ id, notes: passedNotes, userId }) {
       })}
 
       <div className="py-[18px]">
-        <AddMessage id={id} updateNote={updateNote} />
+        {status != "resolved" ? (
+          <Link href="" className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block text-center p-[12px] w-[20%] ml-auto">
+            Give Feedback
+          </Link>
+        ) : (
+          <AddMessage id={id} updateNote={updateNote} />
+        )}
       </div>
     </>
   );

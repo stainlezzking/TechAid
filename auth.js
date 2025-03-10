@@ -10,7 +10,6 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
-          console.log(credentials);
           const user = JSON.parse(credentials.user);
 
           return {

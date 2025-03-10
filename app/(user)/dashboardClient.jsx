@@ -6,7 +6,6 @@ import { useState, useMemo } from "react";
 import { compareDesc, parseISO } from "date-fns";
 
 const DashboardClient = ({ tickets: ticks }) => {
-  console.log(ticks);
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [sortBy, setSortBy] = useState("Last updated");
@@ -50,7 +49,7 @@ const DashboardClient = ({ tickets: ticks }) => {
         ) : (
           <div className="bg-muted flex items-center justify-center h-[250px] space-y-3 flex-col w-full py-5">
             <h1>You don't have any tickets...</h1>
-            <svg className="w-10" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+            <svg className="w-10" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
               <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
               <g id="SVGRepo_iconCarrier">

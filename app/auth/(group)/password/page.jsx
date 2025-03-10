@@ -30,7 +30,6 @@ const Password = function () {
       });
       return;
     }
-    console.log("this is the response user ", response.user);
     loginState[1](response.user);
     UserDataState[1]({ data: response.user });
     return router.push("/auth/2FA-auth");
