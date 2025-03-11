@@ -1,5 +1,4 @@
 import React from "react";
-import AdminNavbar from "@/components/adminNavbar";
 import Box from "@/components/box";
 
 const CreateBlog = () => {

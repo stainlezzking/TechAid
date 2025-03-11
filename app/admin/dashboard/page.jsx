@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { TicketRow } from "@/components/admin/TicketRow";
-// import AdminNavbar from "@/components/admin/adminNavbar";
 import Pagination from "@/components/pagination";
 import Box from "@/components/box";
 import Link from "next/link";

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import TechNavbar from "@/components/techNavbar";
+
 import Box from "@/components/box";
 import Input from "@/components/input";
 import Button from "@/components/button";

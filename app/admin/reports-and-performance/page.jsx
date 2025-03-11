@@ -1,7 +1,7 @@
 "use client";
 
 import React, { PureComponent } from "react";
-import { PieChartComponent } from "@/components/PieChartComponent";
+import { PieChartComponent } from "@/components/admin/PieChartComponent";
 import { useState } from "react";
 import {
   BarChart,
@@ -12,7 +12,6 @@ import {
   ResponsiveContainer,
   Treemap,
 } from "recharts";
-import AdminNavbar from "@/components/adminNavbar";
 import Box from "@/components/box";
 
 const barData = [
@@ -223,7 +222,7 @@ const Dashboard = () => {
         }
         
 
-        <div className="grid grid-cols-4 gap-4 mb-6 justify-items-center">
+        <div className="flex gap-4 mb-6 justify-items-center">
           <Box className="flex flex-col grow shrink-0 aspect-[1.7] max-h-[150px] p-[20px]">
             <div className="pb-[17px]">Tickets Assigned</div>
             <div className="font-bold text-xl">250</div>

@@ -1,4 +1,3 @@
-import AdminNavbar from "@/components/adminNavbar";
 
 const NewsExpand = function () {
     return (

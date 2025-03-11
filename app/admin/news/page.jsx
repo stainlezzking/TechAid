@@ -1,6 +1,5 @@
 "use client";
 
-import AdminNavbar from "@/components/adminNavbar";
 import Search from "@/components/search";
 import Link from "next/link";
 import Image from "@/public/image (1).png";

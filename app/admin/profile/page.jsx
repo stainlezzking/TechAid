@@ -1,7 +1,6 @@
-import AdminNavbar from "@/components/adminNavbar";
 import Box from "@/components/box";
 import image from "@/public/Image.png";
-import icon from "@/public/icon_1.png";
+import Icon_1 from "@/public/admin/icon_1.png";
 
 const Profile = function() {
     return (
@@ -23,7 +22,7 @@ const Profile = function() {
 
                         <div className="pl-[50px]">
                             <Box className=" flex py-[18px] px-[20px]">
-                                <img className="px-[12px]" src ={icon.src} alt="icon"/>
+                                <img className="px-[12px]" src ={Icon_1.src} alt="icon"/>
                                 Edit
                             </Box>
                         </div>
@@ -58,7 +57,7 @@ const Profile = function() {
                         <span className="">12:30PM WAT</span>
                             <div className="pt-[14px] pb-[19px]">
                                 <Box className=" flex py-[16px] px-[20px]">
-                                    <img className="px-[12px]" src ={icon.src} alt="icon"/>
+                                    <img className="px-[12px]" src ={Icon_1.src} alt="icon"/>
                                     Edit
                                 </Box>
                             </div>

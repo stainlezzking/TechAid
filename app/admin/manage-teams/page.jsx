@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import AdminNavbar from "@/components/adminNavbar";
-import { TicketRow } from "@/components/TicketRow";
+import { TicketRow } from "@/components/admin/TicketRow";
 import Pagination from "@/components/pagination";
+import Icon from "@/public/admin/icon.svg";
 
 const teamMembers = [
   {
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
         <div className="bg-[#F4F7FC] shadow-md rounded-lg">
           <div className="p-4 mb-6 flex items-center gap-5">
             <button className="border p-2 rounded bg-gray-200">
-              <img src="/icon.svg" alt="Filter" className="w-4 h-4" />
+              <img src={Icon.src} alt="Filter" className="w-4 h-4" />
             </button>
             <input
               type="text"
