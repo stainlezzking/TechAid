@@ -9,6 +9,9 @@ const statusStyles = {
   Busy: "text-red-700 bg-red-100 px-3 py-1 rounded-full font-medium",
   Active: "text-green-700 bg-green-100 px-3 py-1 rounded-full font-medium",
   Leave: "text-yellow-700 bg-yellow-100 px-3 py-1 rounded-full font-medium",
+  Unassigned: "text-neutral-700 bg-neutral-100 px-3 py-1 rounded-full font-medium",
+  "Out of Support": "text-neutral-700 bg-neutral-100 px-3 py-1 rounded-full font-medium",
+  Troubleshooting: "text-neutral-700 bg-neutral-100 px-3 py-1 rounded-full font-medium"
 };
 
 export const TicketRow = ({ ticket, option = 0 }) => {
@@ -31,9 +34,9 @@ export const TicketRow = ({ ticket, option = 0 }) => {
               {ticket[col]}
             </span>
           ) : col.toLowerCase() === "ratings" ? (
-            <span
+            <span 
               dangerouslySetInnerHTML={{
-                __html: ticket[col].replace(/★/g, "&#9733;"),
+                __html: ticket[col].replace(/★/g, "<span class='text-yellow-500'>★</span>"),
               }}
             ></span>
           ) : (
@@ -41,20 +44,6 @@ export const TicketRow = ({ ticket, option = 0 }) => {
           )}
         </td>
       ))}
-      {option === 1 ? (
-        <td className="p-2 text-blue-600 cursor-pointer">
-          <a href="#" className="hover:underline">
-            Edit Role / Change Department
-          </a>
-        </td>
-      ) : option === 2 ? (
-        <td className="p-2 text-blue-600 cursor-pointer">
-          <a href="#" className="hover:underline">
-            Edit / Manage
-          </a>
-        </td>
-      ) : null}
-      {option == 2 ? <td className="p-2 text-blue-600 cursor-pointer">+</td>: null}
     </tr>
   );
 };

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Table = function({headers, data, rowsPerPage, currentPage, isLink = true, linkUrl = (row) => `/view`  }) {
+const newTable = function({headers, data, rowsPerPage, currentPage, isLink = true, linkUrl = (row) => `/view`  }) {
 
     const normalizedHeaders = headers.map(header => (
         header === "Description" 
@@ -82,4 +82,4 @@ const Table = function({headers, data, rowsPerPage, currentPage, isLink = true, 
     );
 }
 
-export default Table;
+export default newTable;

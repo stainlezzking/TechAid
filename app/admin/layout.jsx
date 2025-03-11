@@ -5,7 +5,7 @@ export default function HomeLayout ({children}) {
                 {children}
             </div>
 
-            <div className="fixed bottom-0 right-0 left-0 min-w-screen h-[50px] max-h-[5%] bg-primaryBlue">
+            <div className="fixed bottom-0 right-0 left-0 min-w-screen h-[50px] max-h-[5%] bg-[#1565D8]">
             </div>
         </div>
     );
