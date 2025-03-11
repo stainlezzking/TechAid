@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Box from "@/components/box";
 import Button from "@/components/button";
-import Rating from "@/public/Rating.png";
 import Confirmation from "@/public/confirmation.png";
 import FilledStar from "@/public/filled-star.jpg";
 import EmptyStar from "@/public/Empty-star.png";

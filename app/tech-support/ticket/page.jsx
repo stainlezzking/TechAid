@@ -1,6 +1,37 @@
+"use client";
+
+import { useState } from "react";
 import Box from "@/components/box";
+import Summary from "@/components/summary";
+import Details from "@/components/details";
+import SurveyFeedbacks from "@/components/surveyfeedback";
 
 const Ticket = function () {
+  const [currentSection, setCurrentSection] = useState("Summary"); // Default section
+
+  const handleButtonClick = (section) => {
+    setCurrentSection(section); // Set the active section based on button click
+  };
+
+  const renderSection = () => {
+    switch (currentSection) {
+      case "Summary":
+        return <Summary />;
+      case "Details":
+        return <Details />;
+      case "Attachments":
+        return <Attachments />;
+      case "Survey Feedbacks":
+        return <SurveyFeedbacks />;
+      case "Assign":
+        return <Assign />;
+      case "Close Ticket":
+        return <CloseTicket />;
+      default:
+        return <Summary />;
+    }
+  };
+
     return (
         <div className="mx-[31px]">
             <div className="pt-[22px] pb-[58px] xl:max-w-[1200px] mx-auto">
@@ -21,12 +52,33 @@ const Ticket = function () {
                         </div>
                         <div className="flex pl-[20px] gap-[15px] ">
                             <div className="flex flex-1 flex-wrap items-center justify-between p-[10px] text-sm">
-                                <div>Summary</div>
-                                <div>Details</div>
-                                <div>Attachments</div>
-                                <div>Survey Feedbacks(0)</div>
-                                <div>Assign</div>
-                                <div>Close Ticket</div>
+                                <button 
+                                    onClick={() => handleButtonClick("Summary")}
+                                    className={`${
+                                        currentSection === "Summary" ? "border-b-2 border-primaryBlue" : ""
+                                      }`}
+                                    >
+                                      Summary
+                                </button>
+                                <button 
+                                  onClick={() => handleButtonClick("Details")}
+                                  className={`${
+                                    currentSection === "Details" ? "border-b-2 border-primaryBlue" : ""
+                                  }`}
+                                  >
+                                    Details
+                                </button>
+                                <button>Attachments</button>
+                                <button 
+                                  onClick={() => handleButtonClick("Survey Feedbacks")}
+                                  className={`${
+                                    currentSection === "Survey Feedbacks" ? "border-b-2 border-primaryBlue" : ""
+                                  }`}
+                                  >
+                                    Survey Feedbacks(0)
+                                </button>
+                                <button>Assign</button>
+                                <button>Close Ticket</button>
                             </div>
                             <div className=" pr-[47px] pb-[21px] text-sm">
                                 <label>Status:</label>
@@ -39,78 +91,7 @@ const Ticket = function () {
                         </div>
                     </div>
                 </Box>
-                <div className="flex pt-[23px] gap-[20px]">
-                    <Box className="flex-3 grow shrink-0 aspect-[1] h-[300px] pl-[24px] pr-[84px] pt-[34px]">
-                        <div className="flex pb-[97px] gap-[83px]">
-                            <div className="font-medium">Description</div>
-                            <div className="bg-[#EEEEEE] pl-[20px] pb-[9px] w-[100%] rounded-sm">
-                                I have not been able to send and receive emails since yesterday.<br/> Can you help me check what is happening?
-                            </div>
-                        </div>
-                        <div className="flex gap-[106px] pb-[55px]">
-                            <div className="font-medium">Email CC</div>
-                            <div className="bg-[#EEEEEE] pl-[20px] pt-[6px] w-[100%] rounded-sm">
-                                AdekolaGbenga@optimusbank.com
-                            </div>
-                        </div>
-                    </Box>
-                    <Box className="flex-1 grow shrink-0 aspect-[1] h-[300px] pl-[18px] pr-[27px]">
-                        <div className="pt-[15px] font-medium">Primary Contact</div>
-                        <div className="flex gap-[63px] pt-[19px] pb-[14px] text-sm">
-                            <div>Name</div>
-                            <div className="bg-[#EEEEEE] pl-[20px] w-[100%] rounded-sm">Faith Bernard</div>
-                        </div>
-                        <div className="flex gap-[30px] pb-[14px] text-sm">
-                            <div>Phone Number</div>
-                            <div className="bg-[#EEEEEE] pt-[10px] pl-[20px] w-[100%] rounded-sm">+234-9087564532</div>
-                        </div>
-                        <div className="flex gap-[63px] pb-[14px] text-sm">
-                            <div>Email</div>
-                            <div className="bg-[#EEEEEE] pl-[20px] w-[100%] rounded-sm">Faith.Bernard@optimusbank.com</div>
-                        </div>
-                        <div className="flex gap-[20px] text-sm">
-                            <div>Contact Method</div>
-                            <div className="bg-[#EEEEEE] pt-[10px] pl-[20px] w-[100%] rounded-sm">Phone/Teams Call</div>
-                        </div>
-                    </Box>
-                </div>
-                <div className="pt-[23px]">
-                    <Box className="px-[40px] pt-[34px]">
-                        <Box className="flex flex-col pl-[20px] pr-[18px] pt-[20px] pb-[15px] mb-[17px]">
-                            <div className="flex justify-between">
-                                <span className="font-bold pb-[8px]">Email from: <span className="font-normal">You</span></span>
-                                <span>11/02/2025 8:53am</span>
-                            </div>
-                            <span>Faith,</span>
-                            <span>I trust you are doing great.</span>
-                            <span>I just helped you renew your subscription. Can you confirm if you can see this mail?</span>
-                        </Box>
-                        <Box className="flex flex-col pl-[20px] pr-[18px] pt-[20px] pb-[15px] mb-[17px]">
-                            <div className="flex justify-between">
-                                <span className="font-bold pb-[8px]">Case Note from: <span className="font-normal">Faith Bernard</span></span>
-                                <span>11/02/2025 8:45am</span>
-                            </div>
-                            <span className="pb-[8px]">Thanks David for picking up this ticket.</span>
-                            <span>Can you help me check what is wrong with my mail? I have been unable to send or receive <br/> emails since yesterday</span>
-                        </Box>
-                        <Box className="flex flex-col pl-[20px] pr-[18px] pt-[20px] pb-[15px] mb-[17px]">
-                            <div className="flex justify-between">
-                                <span className="font-bold pb-[8px]">Case Note from: <span className="font-normal">You</span></span>
-                                <span>11/02/2025 8:45am</span>
-                            </div>
-                            <span className="pb-[8px]">Hello Faith,</span>
-                            <span>This is David, and I will be working with you on this ticket. Please, give me a few minutes <br/>to check on your account</span>
-                        </Box>
-                        <Box className="flex flex-col pl-[20px] pr-[18px] pt-[20px] pb-[15px] mb-[17px]">
-                            <div className="flex justify-between">
-                                <span className="font-bold pb-[8px]">Notification Tech Aid system</span>
-                                <span>11/02/2025 8:30am</span>
-                            </div>
-                            <span className="pb-[8px]">A case with high severity has been assigned to you</span>
-                            <span>Title: Can't Send or Receive Emails</span>
-                        </Box>
-                    </Box>
-                </div>
+                <div className="pt-[23px]">{renderSection()}</div>
             </div>
         </div>
     );
