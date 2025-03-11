@@ -1,10 +1,10 @@
 "use client";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { fetchGet } from "@/lib/server";
-import notification from "@/public/notification.png";
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { formatDistanceToNow } from "date-fns";
 
 const Notification = function ({}) {
   const [noti, setNoti] = useState([]);
@@ -34,7 +34,9 @@ const Notification = function ({}) {
                 fill="#1D1B20"
               />
             </svg>
-            <span className="absolute top-0 left-0 bg-red-500 text-white text-[8px] rounded-full h-3 w-3 flex items-center justify-center">{noti.length}</span>
+            <span className="absolute top-0 left-0 bg-red-500 text-white text-[8px] rounded-full h-3 w-3 flex items-center justify-center">
+              {noti.length}
+            </span>
           </button>
         </SheetTrigger>
         <SheetContent side="right">
@@ -63,7 +65,7 @@ const Notification = function ({}) {
                   <a href={"/ticket/" + alert.ticketId} className="text-xs text-borderActive">
                     Go To Ticket
                   </a>
-                  <div className="text-xs text-gray-500">1 hour ago</div>
+                  <div className="text-xs text-gray-500">{formatDistanceToNow(alert.createdAt, { addSuffix: true })}</div>
                 </div>
               </li>
             ))}
