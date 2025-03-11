@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
 
-const Table = function ({ headers, data, rowsPerPage, currentPage, isFetching }) {
+const Table = function ({ headers, data, rowsPerPage, currentPage, isFetching, view=true }) {
   return (
     <div>
       <table className="table-auto w-full px-3">
@@ -35,8 +35,10 @@ const Table = function ({ headers, data, rowsPerPage, currentPage, isFetching })
                   {Object.keys(ticket).map((props, iin) => {
                     if (props == "description") {
                       return (
-                        <td key={iin + props + ticket.id} className="p-2">
-                          {ticket[props].slice(0, 30) + "..."}
+                        <td key={iin + props + ticket.id} className="p-4">
+                          {view ? ticket[props].slice(0, 30) + "..." : (
+                            <Link href={"/ticket/" + ticket.id} className="text-blue-500 hover:underline"> {ticket[props].slice(0, 30) + "..."} </Link>
+                          )}
                         </td>
                       );
                     }
@@ -62,17 +64,30 @@ const Table = function ({ headers, data, rowsPerPage, currentPage, isFetching })
                         </td>
                       );
                     }
+                    if (props == "ratings") {
+                      return (
+                        <span
+                          dangerouslySetInnerHTML={{
+                          __html: ticket[props].replace(/★/g, "<span class='text-yellow-500'>★</span>"),
+                        }}
+                        >
+                        </span>
+                      );
+                    }
                     return (
                       <td key={iin + ticket.id} className="p-2">
                         {ticket[props]}
                       </td>
                     );
                   })}
+                  {view && (
+
                   <td className="p-4">
                     <Link href={"/ticket/" + ticket.id} className="underline text-xs">
                       View More
                     </Link>
                   </td>
+              )}
                 </tr>
               );
             })}
