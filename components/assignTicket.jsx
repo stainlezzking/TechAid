@@ -8,6 +8,7 @@ import { FetchAuthPost } from "@/lib/server";
 import Input from "./input";
 
 export default function AssignTicket({ id, currentUserEmail, assignedEmail, currentUserName }) {
+  console.log("current user name ", currentUserName);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [submitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");

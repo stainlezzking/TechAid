@@ -40,8 +40,8 @@ const Navbar = function ({ session }) {
                 <Link href="/">Home</Link>
               </div>
 
-              <div className={pathname == "/support/history" ? "font-semibold" : ""}>
-                <Link href="/news">Support History</Link>
+              <div className={pathname == "/history" ? "font-semibold" : ""}>
+                <Link href="/history">My Support History</Link>
               </div>
 
               <div className={pathname == "/support/reports" ? "font-semibold" : ""}>

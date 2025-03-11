@@ -18,13 +18,15 @@ const ChangeStatus = ({ status: serverStatus, _id }) => {
   const [status, setStatus] = useState(serverStatus);
   const [loading, setLoading] = useState(false);
 
-  const handleChangeStatus = async function (status) {
+  const handleChangeStatus = async function (data) {
+    if (data == status) return;
     setLoading(true);
-    setStatus(status);
-    const response = await FetchAuthPost("/ticket/status", { status, _id });
+    setStatus(data);
+    const response = await FetchAuthPost("/ticket/status", { data, _id });
     if (response.unauthorized) {
       return signOut();
     }
+    console.log(response);
     setLoading(false);
   };
   return (

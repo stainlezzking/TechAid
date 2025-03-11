@@ -2,7 +2,8 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { Skeleton } from "./ui/skeleton";
 
-const Table = function ({ headers, data, rowsPerPage, currentPage, isFetching, view = true }) {
+const Table = function ({ headers: tableHeader, data, rowsPerPage, currentPage, isFetching, view = true }) {
+  const headers = view ? tableHeader : tableHeader.filter((head) => head.key != "action");
   return (
     <div>
       <table className="table-auto w-full px-3">

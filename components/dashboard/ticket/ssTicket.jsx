@@ -3,7 +3,7 @@ import Box from "@/components/box";
 import ChangeStatus from "@/components/changeStatus-support";
 
 const SupportTicketRender = ({ ticket, user }) => {
-  const { email } = user;
+  const { email, fullname: name } = user;
   return (
     <>
       <div className="pt-[22px] pb-[58px] xl:max-w-[1200px] mx-auto">
@@ -28,7 +28,7 @@ const SupportTicketRender = ({ ticket, user }) => {
                 <div>Details</div>
                 <div>Attachments</div>
                 <div>Survey Feedbacks(0)</div>
-                <AssignTicket id={ticket._id} currentUserEmail={email} assignedEmail={ticket.assignedTo.email} currentUserName={user.name} />
+                <AssignTicket id={ticket._id} currentUserEmail={email} assignedEmail={ticket.assignedTo.email} currentUserName={name} />
                 <div>Close Ticket</div>
               </div>
               <ChangeStatus status={ticket.status} _id={ticket._id} />
