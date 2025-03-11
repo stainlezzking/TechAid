@@ -28,7 +28,7 @@ const View = async function ({ params }) {
   return (
     <div className="mx-[31px]">
       <div className="mx-auto pb-[43px] xl:max-w-[1200px]">
-        {session.user.role == "user" ? <UserTicket ticket={ticket} /> : <SupportTicketRender ticket={ticket} />}
+        {session.user.role == "user" ? <UserTicket ticket={ticket} /> : <SupportTicketRender ticket={ticket} user={session.user} />}
         <ClientTicketPage id={id} notes={ticket.notes} userId={session.user.id} status={ticket.status} role={session.user.role} />
       </div>
     </div>
