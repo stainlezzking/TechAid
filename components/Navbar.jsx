@@ -44,9 +44,9 @@ const Navbar = function ({ session }) {
                 <Link href="/history">My Support History</Link>
               </div>
 
-              <div className={pathname == "/support/reports" ? "font-semibold" : ""}>
+              {/* <div className={pathname == "/support/reports" ? "font-semibold" : ""}>
                 <Link href="/history">Reports and Performance</Link>
-              </div>
+              </div> */}
             </>
           )}
           {session.user.role == "admin" && (

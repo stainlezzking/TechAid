@@ -59,9 +59,11 @@ const Table = function ({ headers: tableHeader, data, rowsPerPage, currentPage, 
                       return (
                         <td key={iin + props + ticket.id} className="p-2">
                           <span
-                            className={`px-2 py-1 text-sm rounded-full ${
+                            className={`px-2 text-sm rounded-[10px] ${
                               ticket[props] === "resolved"
-                                ? "bg-[#E9EDF5] border border-black/60 text-[#8F8F8F]"
+                                ? "bg-[#E9EDF5] border border-black text-[#8F8F8F]"
+                                : ticket[props] == "open"
+                                ? "bg-[#F0F1FA] border  text-[#4F5AED]"
                                 : "bg-[#E1FCEF] border border-green-800 text-[#14804A]"
                             }`}
                           >
