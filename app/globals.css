@@ -8,6 +8,21 @@ button[data-slot="trigger"] {
   justify-content: space-between;
 }
 
+@keyframes draw-stroke {
+  0% {
+    stroke-dashoffset: 3213.956298828125px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+path.optimusPreloader {
+  stroke-dasharray: 3213.956298828125px;
+  stroke-dashoffset: 3213.956298828125px;
+  animation: draw-stroke 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite alternate;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

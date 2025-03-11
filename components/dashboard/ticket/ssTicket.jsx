@@ -25,10 +25,10 @@ const SupportTicketRender = ({ ticket }) => {
               <div>Details</div>
               <div>Attachments</div>
               <div>Survey Feedbacks(0)</div>
-              <div>Assign</div>
+              <div>Re-Assign</div>
               <div>Close Ticket</div>
             </div>
-            <ChangeStatus status={ticket.status} />
+            <ChangeStatus status={ticket.status} _id={ticket._id} />
           </div>
         </div>
       </Box>

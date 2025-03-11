@@ -18,7 +18,7 @@ const Notification = function ({}) {
       if (!response.success) {
         return toast.error(response.message);
       }
-      setNoti(response.data);
+      setNoti(response.data.reverse());
       return;
     };
     getMyNotifications();

@@ -80,7 +80,7 @@ const TechDashboard = async function ({ session }) {
         </Box>
         <Box className="w-[250px]  h-[171px] space-y-[17px] ">
           <div className="text-lg/[28px]">Total in Progress</div>
-          <div className="font-bold text-[36px] py-[3px]">{inProgress + 5}</div>
+          <div className="font-bold text-[36px] py-[3px]">{inProgress.length + 5}</div>
         </Box>
       </div>
     </div>

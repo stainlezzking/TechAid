@@ -29,8 +29,11 @@ const ClientTicketPage = function ({ id, notes: passedNotes, userId, status }) {
       })}
 
       <div className="py-[18px]">
-        {status != "resolved" ? (
-          <Link href="" className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block text-center p-[12px] w-[20%] ml-auto">
+        {status == "resolved" ? (
+          <Link
+            href=""
+            className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block text-center p-[12px] w-[20%] ml-auto"
+          >
             Give Feedback
           </Link>
         ) : (
