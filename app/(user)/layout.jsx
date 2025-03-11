@@ -14,7 +14,6 @@ export default async function HomeLayout({ children }) {
     redirect("/auth/login");
   }
   const { role } = session.user;
-  console.log(role);
   return (
     <div className="max-xl:mx-31px xl:max-w-[1300px] mx-auto">
       <Navbar session={session} />
