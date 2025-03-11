@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/context/authenticationApi";
 import Logo from "@/public/logo.png";
 import AuthLoginLogo from "@/svgs/auth-login-logo";
 import Image from "next/image";
@@ -13,7 +14,9 @@ export default function AuthLayout({ children }) {
         </div>
       </div>
       <div className="grow min-h-screen flex items-center">
-        <div className="max-w-[438px] mx-auto w-full">{children}</div>
+        <div className="max-w-[500px] mx-auto w-full">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
       </div>
     </div>
   );
