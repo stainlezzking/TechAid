@@ -34,7 +34,8 @@ const Feedback = function() {
                     Survey Feedback
             </div>
             <div className="mt-[46px] ml-[27px]">
-                <Box className="grow shrink-0 max-w-[600px] pt-[32px] pl-[36.5px] pb-[21px]">
+                <Box className="grow shrink-0 
+                 pt-[32px] pl-[36.5px] pb-[21px]">
                     <div className="pb-[49px]">
                         Your ticket has been closed
                     </div>

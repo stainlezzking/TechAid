@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 import { Select, SelectItem, SelectSection } from "@heroui/select";
 
 function CaretDownIcon() {
