@@ -10,7 +10,7 @@ const Navbar = function ({ session }) {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center justify-between p-2">
+    <div className="flex items-center justify-between p-2 fixed top-0 left-0 w-full z-10 shadow-md bg-white">
       <div>
         <Link href="/">
           <img height="50px" width="50px" src={Logo.src} alt="logo" />
