@@ -38,7 +38,7 @@ const UserTicket = ({ ticket }) => {
         <div className="flex flex-col gap-[24px] max-w-[298px]">
           <div className="flex flex-col">
             <span className="font-extralight">Description</span>
-            <span className="text-[#061B2E]" tyle={{ whiteSpace: "pre-line" }}>
+            <span className="text-[#061B2E]" style={{ whiteSpace: "pre-line" }}>
               {ticket.description}
             </span>
           </div>

@@ -114,7 +114,7 @@ const Ticket = function () {
                             className="absolute top-0 left-0 opacity-0 w-full h-full z-20"
                             type="radio"
                             id="phone/teams call"
-                            name="Contact"
+                            name="contactMethod"
                             value="Phone/Teams"
                             onChange={(e) => setSelectedValue(e.target.value)}
                             checked={selectedValue === "Phone/Teams"}
@@ -134,7 +134,7 @@ const Ticket = function () {
                             className="absolute top-0 left-0 opacity-0 w-full h-full z-20 "
                             type="radio"
                             id="email/teams chat"
-                            name="Contact"
+                            name="contactMethod"
                             value="Email/Teams"
                             onChange={(e) => setSelectedValue(e.target.value)}
                             checked={selectedValue === "Email/Teams"}
@@ -158,13 +158,15 @@ const Ticket = function () {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="flex flex-col items-center justify-center bg-white py-[25px] px-[41px] rounded-lg shadow-lg max-w-xl w-full">
               <img className="w-[120px] pb-[40px]" src={Confirmation.src} alt="confirmation" />
-              <span className="text-xl font-semibold pb-[80px] text-center">Your ticket with id {newTicket.displayId} has been successfully created.</span>
+              <span className="text-xl font-semibold pb-[80px] text-center">
+                Your ticket with id {newTicket.displayId} has been successfully created.
+              </span>
 
               <Link
                 href={"/ticket/" + newTicket._id}
                 className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block text-center px-4 py-2 w-[40%]"
               >
-                Let's Start!
+                View Ticket
               </Link>
             </div>
           </div>

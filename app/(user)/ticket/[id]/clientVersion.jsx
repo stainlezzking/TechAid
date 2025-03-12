@@ -5,12 +5,13 @@ import AddMessage from "@/components/addMessage";
 import { useState } from "react";
 import Link from "next/link";
 
-const ClientTicketPage = function ({ id, notes: passedNotes, userId, status, role = "user" }) {
+const ClientTicketPage = function ({ review, id, notes: passedNotes, userId, status, role = "user" }) {
   const [notes, setNotes] = useState([...passedNotes.reverse()]);
 
   const updateNote = function (notes) {
     setNotes(notes);
   };
+  console.log("the review here is ", review);
   return (
     <>
       <div className="border-b border-black w-full">In-App Messages</div>
@@ -29,9 +30,9 @@ const ClientTicketPage = function ({ id, notes: passedNotes, userId, status, rol
 
       <div className="py-[18px]">
         {status != "resolved" && <AddMessage id={id} updateNote={updateNote} />}
-        {status == "resolved" && role == "user" && (
+        {status == "resolved" && role == "user" && !review && (
           <Link
-            href=""
+            href={"/feedback/" + id}
             className="bg-primaryBlue hover:bg-primaryBlue/70 font-medium text-white rounded-md block text-center p-[12px] w-[20%] ml-auto"
           >
             Give Feedback

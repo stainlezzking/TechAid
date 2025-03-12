@@ -38,6 +38,7 @@ const TechDashboard = async function ({ session }) {
           name: ticket.userId.fullname,
           description: ticket.description,
           status: ticket.status,
+          displayId: ticket.displayId,
           dateOpened: format(ticket.updatedAt, "dd MMM, yyyy"),
           priority: ticket.priority,
         };

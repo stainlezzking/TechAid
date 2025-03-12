@@ -43,8 +43,17 @@ const DashboardClient = ({ tickets: ticks }) => {
 
       <div className="flex justify-between gap-y-[16px] gap-x-[32px] flex-wrap">
         {filteredTickets.length ? (
-          filteredTickets.map(({ title, _id, priority, createdAt, updatedAt, status }) => (
-            <TicketPreview title={title} _id={_id} key={_id} priority={priority} createdAt={createdAt} updatedAt={updatedAt} status={status} />
+          filteredTickets.map(({ title, _id, priority, createdAt, updatedAt, status, displayId }) => (
+            <TicketPreview
+              displayId={displayId}
+              title={title}
+              _id={_id}
+              key={_id}
+              priority={priority}
+              createdAt={createdAt}
+              updatedAt={updatedAt}
+              status={status}
+            />
           ))
         ) : (
           <div className="bg-muted flex items-center justify-center h-[250px] space-y-3 flex-col w-full py-5">
