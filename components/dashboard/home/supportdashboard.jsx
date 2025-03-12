@@ -46,7 +46,7 @@ const TechDashboard = async function ({ session }) {
 
   const dataSolved = response.data.filter((ticket) => ticket.status == "resolved");
   const inProgress = response.data.filter((ticket) => ticket.status == "in-progress");
-
+  const feedback = response.data.filter((t) => t.feedback);
   return (
     <div className="p-[50px] pb-[58px] xl:max-w-[1200px] mx-auto">
       <div className="flex justify-between pb-[33px]">
@@ -77,7 +77,7 @@ const TechDashboard = async function ({ session }) {
         </Box>
         <Box className="w-[250px]  h-[171px] space-y-[17px] ">
           <div className="text-lg/[28px]">Survey Feedback</div>
-          <div className="font-bold text-[36px] py-[3px]">140</div>
+          <div className="font-bold text-[36px] py-[3px]">{feedback.length}</div>
         </Box>
         <Box className="w-[250px]  h-[171px] space-y-[17px] ">
           <div className="text-lg/[28px]">Total in Progress</div>
