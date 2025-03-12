@@ -44,7 +44,7 @@ const Navbar = function ({ session }) {
                 <Link href="/history">My Support History</Link>
               </div>
 
-              <div className={pathname == "/support/reports" ? "font-semibold" : ""}>
+              <div className={pathname == "/analytics" ? "font-semibold" : ""}>
                 <Link href="/analytics">Reports and Performance</Link>
               </div>
             </>
