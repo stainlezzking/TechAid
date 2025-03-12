@@ -20,7 +20,7 @@ const UserDashboard = async ({ session }) => {
   const tickets = response.data || [];
 
   // Categorize tickets
-  const closedTickets = tickets.filter((ticket) => ticket.status === "closed");
+  const closedTickets = tickets.filter((ticket) => ticket.status === "resolved");
   const inProgressTickets = tickets.filter((ticket) => ticket.status === "open" || ticket.status === "in-progress");
 
   return (
